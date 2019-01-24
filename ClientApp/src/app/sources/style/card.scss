@@ -1,0 +1,317 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,700');
+
+
+  .card {
+    width: 100%;
+    height:150px;
+    cursor: pointer;
+    background:transparent;
+    //position:absolute;
+    display: flex;
+    flex-direction: row;
+
+    left:0;
+    right:0;
+    margin-bottom: 20px;
+    top:0;
+    bottom:0;
+    border-radius:10px;
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);;
+  }
+
+
+
+
+  .card_left {
+    display: block;
+    width:40%;
+    height:150px;
+    //float:left;
+    flex: 1;
+    order: 1;
+    overflow:hidden;
+    background:transparent;
+    img {
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      object-position: top;
+      border-radius:10px 0 0 10px;
+      -webkit-border-radius:10px 0 0 10px;
+      -moz-border-radius:10px 0 0 10px;
+      //position:relative;
+    }
+  }
+
+  .card_right {
+    display: block;
+    width:60%;
+    //float:left;
+    flex: 2;
+    order: 2;
+    //background:#EEF4F2;
+    min-height:150px;
+    max-height:150px;
+    border-radius:0 10px 10px 0;
+    -webkit-border-radius:0 10px 10px 0;
+    -moz-border-radius:0 10px 10px 0;
+    .card-title {
+      color: #233656;
+      font-family: 'Montserrat', sans-serif;
+      font-weight:200;
+      text-align:left;
+      font-size:14px;
+      margin:10px 0 0 0;
+      padding:0 0 0 20px;
+      letter-spacing:1px;
+    }
+    &__details {
+      ul {
+        list-style-type:none;
+        padding:0 0 0 40px;
+        margin:10px 0 0 0;
+        li {
+          display:inline;
+          color:#e3e3e3;
+          font-family: 'Montserrat', sans-serif;
+          font-weight:200;
+          //font-size:14px;
+          padding:0 40px 0 0;
+        }
+      }
+    }
+    &__rating {
+      &__stars {
+        position:relative;
+        right:160px;
+        margin:10px 0 10px 0;
+        fieldset, label { margin: 0; padding: 0; }
+        .rating {
+          border: none;
+        }
+
+        .rating > input { display: none; }
+        .rating > label:before {
+          margin: 5px;
+          font-size: 1.25em;
+          display: inline-block;
+          content: "\f005";
+          font-family: FontAwesome;
+        }
+
+        .rating > .half:before {
+          content: "\f089";
+          position: absolute;
+        }
+
+        .rating > label {
+          color: #ddd;
+          float:right;
+        }
+
+        /***** CSS Magic to Highlight Stars on Hover *****/
+
+        .rating > input:checked ~ label, /* show gold star when clicked */
+        .rating:not(:checked) > label:hover, /* hover current star */
+        .rating:not(:checked) > label:hover ~ label { color: #FFD700;  } /* hover previous stars in list */
+
+        .rating > input:checked + label:hover, /* hover current star when changing rating */
+        .rating > input:checked ~ label:hover,
+        .rating > label:hover ~ input:checked ~ label, /* lighten current selection */
+        .rating > input:checked ~ label:hover ~ label { color: #FFED85;  }
+      }
+    }
+    &__review {
+      p {
+        color: #233656;
+        font-family: 'Montserrat', sans-serif;
+        font-size:12px;
+        padding:0 40px 0 20px;
+        letter-spacing:1px;
+        margin:10px 0 10px 0;
+        line-height:20px;
+      }
+      a {
+        text-decoration:none;
+        font-family: 'Montserrat', sans-serif;
+        font-size:14px;
+        padding:0 0 0 20px;
+        color:#ffda00;
+        margin:0;
+      }
+    }
+    &__button {
+      a {
+        color:#ffda00;
+        text-decoration:none;
+        font-family: 'Montserrat', sans-serif;
+        border:2px solid #ffda00;
+        padding:10px 10px 10px 40px;
+        font-size:12px;
+        background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/343086/COMdoWZ.png');
+        background-size:12px 12px;
+        background-repeat:no-repeat;
+        background-position: 7% 50%;
+        border-radius:5px;
+        -webkit-transition-property: all;
+        transition-property: all;
+        -webkit-transition-duration: .5s;
+        transition-duration: .5s;
+      }
+      a:hover {
+        color: #000000;
+        background-color: #ffda00;
+        background-image:url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/343086/rFQ5dHA.png');
+        background-size:12px 12px;
+        background-repeat:no-repeat;
+        background-position: 10% 50%;
+        cursor: pointer;
+        -webkit-transition-property: all;
+        transition-property: all;
+        -webkit-transition-duration: .5s;
+        transition-duration: .5s;
+      }
+      padding:0 0 0 40px;
+      margin:30px 0 0 0;
+    }
+    .selected {
+      background-color: #7f7f7f;
+    }
+  }
+
+
+
+
+.card_opened {
+
+  width: 100%;
+  height:75px;
+  background:#EEF4F2;
+  //position:absolute;
+  display: flex;
+  flex-direction: row;
+  border-radius:10px;
+  -webkit-border-radius:10px;
+  -moz-border-radius:10px;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.10);;
+
+}
+
+.card_right_icons_opened {
+  color: #233656;
+  display: block;
+  width:100px;
+  height:75px;
+  line-height: 75px;
+  order: 3;
+  overflow:hidden;
+  background-color: transparent;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  border-left: 2px solid #A4A4A4;
+  border-radius: 40px 40px 40px 40px;
+
+}
+
+.card_right_icons_opened_fully {
+  position:fixed;
+  right: 20px;
+  color: #233656;
+  width:70px;
+  height:70px;
+  line-height: 75px;
+  order: 3;
+  overflow:hidden;
+  background-color: transparent;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  border: 2px solid #A4A4A4;
+  border-radius: 40px 40px 40px 40px;
+
+}
+
+.right_icon {
+  font-size: 40px;
+  float: left;
+  display: inline-block;
+  line-height: 100%;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.right_icons_menu{
+  display: flex;
+  flex-direction: column;
+}
+.right_icon_menu {
+  font-size: 20px;
+  display: inline-block;
+  line-height: 100%;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+
+.card_left_opened {
+  display: block;
+  width:150px;
+  height:75px;
+
+  order: 1;
+  overflow:hidden;
+  background:transparent;
+  img {
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    object-position: top;
+    border-radius:10px 0 0 10px;
+    -webkit-border-radius:10px 0 0 10px;
+    -moz-border-radius:10px 0 0 10px;
+    //position:relative;
+  }
+}
+
+.card_right_opened {
+  display: block;
+  width:60%;
+  //float:left;
+  flex: 2;
+  order: 2;
+  background:#EEF4F2;
+  min-height:75px;
+  max-height:75px;
+  border-radius:0 10px 10px 0;
+  -webkit-border-radius:0 10px 10px 0;
+  -moz-border-radius:0 10px 10px 0;
+  .card-title {
+    color: #233656;
+    font-family: 'Montserrat', sans-serif;
+    font-weight:200;
+    text-align:left;
+    font-size:12px;
+    margin:5px 0 0 0;
+    padding:0 0 0 20px;
+    letter-spacing:1px;
+  }
+
+  &__review {
+    p {
+      color: #233656;
+      font-family: 'Montserrat', sans-serif;
+      font-size:12px;
+      padding:0 40px 0 20px;
+      letter-spacing:1px;
+      margin:10px 0 10px 0;
+      line-height:20px;
+    }
+  }
+}

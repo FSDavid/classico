@@ -1,0 +1,133 @@
+<body>
+  <div class="limiter">
+    <div class="container-login100">
+      <div class="wrap-login100">
+        <div *ngIf="!fbEmail">
+        <div *ngIf="!forgorPassword else ForgotPassword">
+          <form [formGroup]="authenticationForm" class="login100-form validate-form" [ngClass]="{'isDisabled': authIsLoading}" >
+            <span class="login100-form-title p-b-26">Welcome</span  >
+
+            <div *ngIf="incorrectAuth" class="m-b-10">
+              <span style="color: red; font-weight: bold; ">Invalid email or password!</span>
+            </div>
+
+            <div [ngClass]="{'alert-validate': f.email.errors}" class="wrap-input100 validate-input" data-validate = "Enter valid email" >
+              <input formControlName="email" #UsernameFild class="input100" [ngClass]="{'has-val': authenticationForm.value.email && authenticationForm.value.email.length > 0}" type="email" name="email"> <!-- [(ngModel)]="emailModel"   disable-control [disablevalue]="this.authIsLoading"-->
+              <span class="focus-input100" data-placeholder="Email"></span>
+            </div>
+
+            <div [ngClass]="{'alert-validate': f.password.errors}" class="wrap-input100 validate-input" data-validate="Enter minimum 6 characters">
+              <input formControlName="password" #PasswordField  [ngClass]="{'has-val': authenticationForm.value.password && authenticationForm.value.password.length > 0}" class="input100" [type]="passwordVisible? 'text' : 'password'" name="pass"> <!--[(ngModel)]="passwordModel"-->
+              <span class="focus-input100" data-placeholder="Password"></span>
+            </div>
+
+            <div class="container-login100-form-btn">
+              <div [ngClass]="{'isDisabled': authIsLoading}" class="wrap-login100-form-btn">
+                <div class="login100-form-bgbtn"></div>
+                <button [disabled]="authIsLoading || !authenticationForm.valid" class="login100-form-btn" (click)="LogIn({username: UsernameFild.value, password: PasswordField.value})">
+                  Login
+                </button>
+              </div>
+            </div>
+            <div class="m-t-10">
+             <app-facebook-login ></app-facebook-login>
+            </div>
+
+            <div class="p-t-20 auth-loader" >
+              <div *ngIf="authIsLoading">
+                <img src="../../../assets/loaders/puff.svg" width="40" alt="">
+              </div>
+            </div>
+
+            <div class="text-center p-t-20">
+              <span [ngClass]="{'isDisabled': authIsLoading}" class="txt1">Don’t have an account?
+                <a class="txt2" [routerLink]='["../register"]'>
+                  Sign Up Now
+                </a>
+              </span>
+            </div>
+            <div class="text-center p-t-5">
+              <span [ngClass]="{'isDisabled': authIsLoading}" class="txt1">
+                <a class="txt2 made-link" (click)="applyForgot()">
+                  Forgot Password?
+                </a>
+              </span>
+            </div>
+          </form>
+        </div>
+        </div>
+
+
+        <ng-template #ForgotPassword>
+          <form [formGroup]="forgotPasswordForm" class="login100-form validate-form" [ngClass]="{'isDisabled': authIsLoading}" >
+
+            <div class="text-left p-b-5">
+              <span [ngClass]="{'isDisabled': authIsLoading}" class="txt1">
+                <a class="txt2 made-link" (click)="cancelForgot()">
+                  ← Cancel
+                </a>
+              </span>
+            </div>
+
+            <span class="login100-form-title p-b-26">
+  			  			Send us email
+            </span>
+
+            <div *ngIf="incorrectAuth" class="m-b-10">
+              <span style="color: red; font-weight: bold; ">Invalid email</span>
+            </div>
+
+            <div [ngClass]="{'alert-validate': f1.emailForgot.errors}" class="wrap-input100 validate-input" data-validate = "Enter valid email" >
+              <input formControlName="emailForgot" #ForgotEmailField class="input100" [ngClass]="{'has-val': forgotPasswordForm.value.emailForgot && forgotPasswordForm.value.emailForgot.length > 0}" type="email" name="forgotEmailField">
+              <span class="focus-input100" data-placeholder="Email"></span>
+            </div>
+
+            <div *ngIf="authIsLoading" class="p-t-10 auth-loader" >
+              <div >
+                <img src="../../../assets/loaders/puff.svg" width="40" alt="">
+              </div>
+            </div>
+
+            <div *ngIf="sentToEmail" class="m-b-10">
+              <span style="color: blue; font-weight: bold; ">Reset url has sent to your email.</span>
+            </div>
+
+            <div class="container-login100-form-btn">
+              <div [ngClass]="{'isDisabled': authIsLoading}" class="wrap-login100-form-btn">
+                <div class="login100-form-bgbtn"></div>
+                <button [disabled]="authIsLoading || !forgotPasswordForm.valid" class="login100-form-btn" (click)="sendForgotPassword({email: ForgotEmailField.value})">
+                  Send Email
+                </button>
+              </div>
+            </div>
+          </form>
+        </ng-template>
+
+        <div *ngIf="fbEmail">
+          <form [formGroup]="fbEmailForm" class="login100-form validate-form" [ngClass]="{'isDisabled': authIsLoading}" >
+
+            <span class="login100-form-title p-b-26">
+  			  			For registration add your email
+            </span>
+
+            <div [ngClass]="{'alert-validate': f2.fbEmail.errors}" class="wrap-input100 validate-input" data-validate = "Enter valid email" >
+              <input formControlName="fbEmail" #FbEmailField class="input100" [ngClass]="{'has-val': fbEmailForm.value.fbEmail && fbEmailForm.value.fbEmail.length > 0}" type="email" name="fbEmailField">
+              <span class="focus-input100" data-placeholder="Email"></span>
+            </div>
+
+            <div class="container-login100-form-btn">
+              <div [ngClass]="{'isDisabled': authIsLoading}" class="wrap-login100-form-btn">
+                <div class="login100-form-bgbtn"></div>
+                <button [disabled]="authIsLoading || !fbEmailForm.valid" class="login100-form-btn" (click)="sendFbEmail(FbEmailField.value)">
+                  Send Email
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</body>

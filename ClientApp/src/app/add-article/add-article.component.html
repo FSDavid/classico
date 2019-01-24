@@ -1,0 +1,66 @@
+
+<div class="wrap" xmlns="http://www.w3.org/1999/html">
+  <div class="nav-bar">
+    <app-nav-menu></app-nav-menu>
+  </div>
+  <div class="main">
+    <div class="box-container" fxLayout="column" > <!--[ngStyle.lt-sm]="'min-height: 800px;'"-->
+
+
+      <div>  <!--class="horizontal-container" fxLayout="row" fxLayout.lt-sm="column" fxLayoutAlign="stretch" fxFlex="auto"-->
+        <!--<div class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="50%">-->
+          <!--<div class="box-title">Settings</div>-->
+
+          <!--<div class="action-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="auto">-->
+            <!--<div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleType()'>{{(type == "component") ? "Switch to directive" : "Switch to component"}}</div>-->
+
+            <!--<div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleDisabled()'>Toggle disabled state</div>-->
+
+            <!--<div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleReadonly()'>Toggle read-only mode</div>-->
+
+            <!--<div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleToolbar()'>Toggle toolbar showing</div>-->
+
+            <!--<div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='toggleTheme()'>{{(config.theme == "snow") ? "Change to bubble theme" : "Change to snow theme"}}</div>-->
+
+            <!--<div class="action-button" fxLayout="column" fxLayoutAlign="center" fxFlex="auto" (click)='clearEditorContent()'>Clear the editor content</div>-->
+          <!--</div>-->
+        <!--</div>-->
+
+        <div > <!--class="vertical-container" fxLayout="column" fxLayoutAlign="stretch" fxFlex="50%"-->
+
+          <div class="content-container" >
+            <!--[value]="'Some <b>example</b> content'"-->
+            <quill
+              *ngIf="type == 'component' && show"
+              [config]="config"
+              [modules]="modules"
+              [disabled]="disabled"
+              (blur)="onEditorBlur($event)"
+              (focus)="onEditorFocus($event)"
+              (editorCreate)="onEditorCreate($event)"
+              (valueChange)="onValueChange($event)"
+              (contentChange)="onContentChange($event)"
+              (selectionChange)="onSelectionChange($event)">
+
+            </quill>
+
+            <!--<div *ngIf="type == 'directive' && show" class="quill-editor" fxLayout="column" fxFlex="auto" [quill]="config" [modules]="modules" [disabled]="disabled" (blur)="onEditorBlur($event)" (focus)="onEditorFocus($event)" (editorCreate)="onEditorCreate($event)" (contentChange)="onContentChange($event)" (selectionChange)="onSelectionChange($event)">-->
+              <!--Some <b>example</b> content-->
+            <!--</div>-->
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div style=" margin: 0 auto; width: 768px;" [innerHTML]="openedNodeTemplate"></div>
+
+
+
+
+  </div>
+</div>
+
+
+
+

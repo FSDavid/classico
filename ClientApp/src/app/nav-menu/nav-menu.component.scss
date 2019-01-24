@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway');
+
+div.nav-menu {
+  display: flex;
+  height: 100%;
+}
+
+.cyan
+{
+  text-align: center;
+  flex-grow: 1;
+  background: #96BEC0;
+}
+div.cyan a
+{
+  color: #FFF;
+  text-decoration: none;
+  font: 18px Raleway;
+  //margin: 0px 10px;
+  padding: 10px 10px;
+  z-index: 0;
+  cursor: pointer;
+}
+
+
+
+
+/* Brackets go out */
+div.brackets a:before, div.brackets a:after
+{
+  opacity: 0;
+  font-size: 30px;
+  top: 0px;
+  transition: all 0.3s;
+}
+
+div.brackets a:before
+{
+  content: '(';
+  left: 0px;
+  transform: translateX(10px);
+}
+
+div.brackets a:after
+{
+  content: ')';
+  right: 0px;
+  transform: translateX(-10px);
+}
+
+div.brackets a:hover:before, div.brackets a:hover:after
+{
+  opacity: 1;
+  transform: translateX(0px);
+}

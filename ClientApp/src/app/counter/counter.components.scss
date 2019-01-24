@@ -1,0 +1,39 @@
+.main-container {
+  display: flex;
+  flex-flow: row wrap;
+  flex-wrap: nowrap;
+  width: 100VW;
+  position: relative;
+  height: calc(100vh - 0px);
+  background-color: cyan;
+  overflow: hidden;
+}
+
+.sidebar {
+  flex-grow: 1;
+  background-color: lightGreen;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-width: 200px;
+}
+
+.ChatList {
+  background-color: greenyellow;
+  overflow: auto;
+  flex-grow: 1;
+}
+
+.chat {
+  flex-grow: 3;
+  flex-shrink: 0;
+  background-color: firebrick;
+  display: flex;
+  flex-direction: column;
+}
+
+.Thread {
+  flex-grow: 3;
+  overflow: auto;
+  background-color: deepskyblue;
+}

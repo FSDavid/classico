@@ -1,0 +1,239 @@
+<div class="wrap" xmlns="http://www.w3.org/1999/html">
+  <div class="nav-bar">
+    <app-nav-menu></app-nav-menu>
+  </div>
+  <div class="main">
+    <div class="full-aside">
+
+      <div style="margin: 5px 25px 5px 0px;" tabDirective>
+        <div class="tabs">
+          <div class="selector"></div>
+          <a href="#" >Matches</a>
+          <a href="#" class="active">News</a>
+        </div>
+      </div>
+
+      <div class="aside">
+        <div *ngFor="let node of nodes; let i = index">
+          <div class="card" >
+            <div class="card_left">
+              <img src="{{node.nodeImage}}"/>
+            </div>
+            <div class="card_right" [ngStyle]="{backgroundColor: i === selectedIndex ? '#CDD6D5' : '#EEF4F2'}">
+              <div class="card-title">{{node.mainTag}}</div>
+              <div class="card_right__details">
+                <div class="card_right__review">
+                  <p>{{node.nodeTitle}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="cards-container">
+          <div class="card">
+            <div class="card_left">
+              <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/343086/h8fnwL1.png"/>
+            </div>
+            <div class="card_right">
+              <div class="card-title">KILL  BILL:  VOL.  1</div>
+              <div class="card_right__details">
+                <div class="card_right__review">
+                  <p>The lead character, called 'The Bride,' was a memb'The Bearsal was gunned down by....</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="full-article">
+      <div *ngIf="!nodeOpened; else articleOpened" class="right-node">
+        <div  class="card_opened">
+          <div class="card_left_opened">
+            <img src={{nodes[1].nodeImage}}/>
+          </div>
+          <div class="card_right_opened">
+            <div class="card-title">{{nodes[1].mainTag}}</div>
+              <div class="card_right__review">
+                <p>{{nodes[1].nodeTitle}}</p>
+              </div>
+          </div>
+          <div class="card_right_icons_opened">
+            <i (click)="nodeOpened = true" class=" material-icons right_icon">keyboard_arrow_down</i>
+            <div class="right_icons_menu">
+              <i class=" material-icons right_icon_menu">notifications_off</i>
+              <i class=" material-icons right_icon_menu">favorite_border</i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        <ng-template #articleOpened>
+          <div class="card_opened_opened right-node">
+
+
+            <div class="card_right_icons_opened_fully">
+              <i (click)="nodeOpened = false" class=" material-icons right_icon">keyboard_arrow_up</i>
+              <div class="right_icons_menu">
+                <i class=" material-icons right_icon_menu">notifications_off</i>
+                <i class=" material-icons right_icon_menu">favorite_border</i>
+              </div>
+            </div>
+
+            <div style="margin: 0 10% 20px 10%;font-size: 20px;">
+              <span style="float:right;">{{nodeOpenedFull.createDate}}</span>
+              <span>{{nodeOpenedFull.nodeTitle}}</span>
+            </div>
+
+            <div style="width: 80%; margin: auto;" [innerHTML]="openedNodeTemplate"></div>
+
+
+            <div style="float:right; margin-right: 10%;"><span>Source: <a href="{{nodeOpenedFull.sourceUrl}}">{{nodeOpenedFull.sourceName}}</a></span></div>
+            <div style="margin-left: 10%;"><span>Author: {{nodeOpenedFull.authorName}}</span></div>
+
+          </div>
+        </ng-template>
+
+      <div class="article">
+
+        <div autoScrollDown class="chat-content">
+          <span bubble-class-directive>
+          <div *ngFor="let message of messages; let i = index">
+            <div  class="full-message" [ngClass]="{'last-message': i+1 === messages.length}">
+              <div *ngIf="message.messageAuthorId !== owner" class="other bubble1 commentator-name">
+                {{message.authorName}}
+              </div>
+              <div mouse-over-message class="bubble1" [ngClass] = "{'other': message.messageAuthorId !== owner, 'owner': message.messageAuthorId === owner}">
+                <div *ngIf="message.messageAuthorId !== owner" class="avatar-on-comment">
+                  <img src={{message.authorImageUrl}}/>
+                </div>
+
+                <div *ngIf="message.messageAuthorId === owner" class="reply-icon-place owners-reply"> <!--reply-icon-place-owner-->
+                  <div class="reply-message">
+                    <i class="icon-in-message icon-flipped material-icons">
+                      reply
+                    </i>
+                  </div>
+                  <div class="reply-message">
+                    <i class="icon-in-message material-icons">
+                      insert_emoticon
+                    </i>
+                  </div>
+                  <span class="reply-message message-time">15:36</span>
+                </div>
+
+                <div>
+                  <div
+                    emoji-position
+                    class="bubble bubble-class-place"
+                    [ngClass] =
+                      "{
+                          'other-color only-message-other': message.messageAuthorId !== owner && message.messageType !== 'sticker' && message.messageType !== 'images' && message.messageType !== 'video',
+                          'owner-color only-message-owner': message.messageAuthorId === owner  && message.messageType !== 'sticker' && message.messageType !== 'images' && message.messageType !== 'video'
+                       }">
+                    <div *ngIf="message.messageType === 'text'">{{message.messageBody}}</div>
+                    <div *ngIf="message.messageType === 'sticker'"><img class="sticker" src="../../assets/stickers/{{message.messageBody}}"></div>
+                    <div *ngIf="message.messageType === 'images'">
+                      <div [ngSwitch] = "message.images.length">
+                        <div *ngSwitchCase="1" >
+                          <img class="image-message message-single-image" src="{{message.images[0].imageUrl}}">
+                        </div>
+                        <div *ngSwitchCase="2" class="message-image-grid">
+                          <div *ngFor="let image of message.images; let i = index;">
+                            <img class="image-message" src="{{image.imageUrl}}">
+                          </div>
+                        </div>
+                        <div *ngSwitchCase="3" class="message-image-grid" >
+                          <div *ngFor="let image of message.images; let i = index;">
+                            <img class="image-message" src="{{image.imageUrl}}">
+                          </div>
+                        </div>
+                        <div *ngSwitchCase="4" class="message-image-grid">
+                          <div *ngFor="let image of message.images; let i = index;">
+                            <img class="image-message" src="{{image.imageUrl}}">
+                          </div>
+                        </div>
+                        <div *ngSwitchDefault class="message-image-grid">
+                          <div *ngFor="let image of message.images; let i = index;">
+                            <span *ngIf="i < 3">
+                              <img class="image-message" src="{{image.imageUrl}}">
+                            </span>
+                            <span *ngIf="i === 3">
+                              <span [ngStyle]="{ 'background-image': 'url(' + image.imageUrl + ')'}" class="last-image-cover">
+                                <span class="last-image-cover-text">See + {{message.images.length - 3}} Photos</span>
+                              </span>
+                            </span>
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+                    <div *ngIf="message.messageType === 'video'">
+                      <iframe width="500" height="345" [src]="message.messageBody | youtubeSanitizer" frameborder="0" allowfullscreen></iframe>
+                    </div>
+
+
+                    <div *ngIf="message.emojis.length" [ngClass] = "{'emoji-on-message-position-other': message.messageAuthorId !== owner, 'emoji-on-message-position-owner': message.messageAuthorId === owner}">
+                      <div class="emoji-on-message" [ngClass] = "{'emoji-on-message-position-other': message.messageAuthorId !== owner, 'emoji-on-message-position-owner': message.messageAuthorId === owner}" >
+                        <span *ngFor="let emoji of (message.emojis.length > 4 ? (message.emojis | slice:message.emojis.length - 5) : message.emojis)">
+                          <img src={{emoji.emojiUrl}}>
+                        </span>
+                        <span>{{message.emojis.length}}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div *ngIf="message.messageAuthorId !== owner" class="reply-icon-place">
+                  <div class="reply-message">
+                    <i class="icon-in-message material-icons">
+                      reply
+                    </i>
+                  </div>
+                  <div class="reply-message">
+                    <i class="icon-in-message material-icons">
+                      insert_emoticon
+                    </i>
+                  </div>
+                  <span class="message-time">15:36</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          </span>
+
+        </div>
+      </div>
+
+
+      <div class="input-text" autosize [autoresize] = "250">
+        <div class ="input-side">
+          <textarea  autofocus placeholder="Type some message..." rows="1" class="input-itself" ></textarea>
+        </div>
+        <div class ="buttons-side">
+          <i class="material-icons">
+            tag_faces
+          </i>
+          <i class="material-icons">
+            add_photo_alternate
+          </i>
+          <div class="youtube-icon">
+            <fa-icon [icon]="['fab', 'youtube']"></fa-icon>
+          </div>
+          <i class="material-icons">
+            gif
+          </i>
+          <div class="sticker-icon">
+            <img src="../../assets/icons/stickersicon.png">
+          </div>
+
+          <i class="material-icons">
+            send
+          </i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
