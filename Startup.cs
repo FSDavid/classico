@@ -123,29 +123,6 @@ namespace classico
             });
 
 
-
-
-            //// add identity
-            //var builder = services.AddIdentityCore<AppUser>(o =>
-            //{
-            //    // configure identity options
-            //    o.Password.RequireDigit = false;
-            //    o.Password.RequireLowercase = false;
-            //    o.Password.RequireUppercase = false;
-            //    o.Password.RequireNonAlphanumeric = false;
-            //    o.Password.RequiredLength = 6;
-
-            //    o.Tokens.PasswordResetTokenProvider = TokenOptions.DefaultEmailProvider;
-
-            //});
-            //builder.AddDefaultTokenProviders();
-
-            //builder = new IdentityBuilder(builder.UserType, typeof(IdentityRole), builder.Services);
-
-            //builder.AddEntityFrameworkStores<ApplicationDbContext>();
-
-            // add identity
-
             services.AddIdentityCore<AppUser>(o =>
             {
                 // configure identity options

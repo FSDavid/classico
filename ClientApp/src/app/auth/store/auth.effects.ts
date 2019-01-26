@@ -38,8 +38,6 @@ export class UserEffects {
              ];
             }
           ),
-          // If request fails, dispatch failed action
-          // catchError(() => of({ type: 'LOGIN_FAILED' }, {type: 'AUTH_SPINNER_HIDE'}))
           catchError(() => [{type: 'AUTH_SPINNER_HIDE'}, {type: 'INCORRECT_AUTH_SHOW'}]) // SIGN_UP_FAILED
         );
       }
@@ -164,119 +162,6 @@ export class UserEffects {
     )
 
     );
-
-
-
-
-  // @Effect()
-  // logInWithEmail = this.actions$.pipe(
-  //   ofType(authActions.LOGIN_WITH_EMAIL).pipe(
-  //     switchMap ((action: authActions.LoginWithEmail) => {
-  //           return this.httpClient.post<LoginViewModel>('https://localhost:44312/api/auth/login', action.payload, {
-  //             observe: 'body',
-  //             responseType: 'json'
-  //           }).pipe(
-  //             map(tmp => {
-  //               // console.log(JSON.stringify(tmp));
-  //               localStorage.setItem('access_token', tmp['auth_token']);
-  //               localStorage.setItem('ref_token', tmp['ref_token']);
-  //               this.gts.routeAfterLogIn();
-  //               this.store.dispatch(new authActions.AuthSpinnerHide());
-  //               return {
-  //                 type: authActions.SET_TOKEN,
-  //                 payload: tmp
-  //               };
-  //             })
-  //             , catchError(() =>
-  //               // this.store.dispatch(new authActions.AuthSpinnerHide());
-  //               of(new EffectError())
-  //             )
-  //           );
-  //         }
-  //       )
-  //     // ,
-  //     // catchError()
-  //   ));
-  //
-  //
-  // @Effect()
-  // signupWithEmail = this.actions$.pipe(
-  //   ofType(authActions.SIGNUP_WITH_EMAIL).pipe(
-  //     switchMap ((action: authActions.SignupWithEmail) => {
-  //         return this.httpClient.post('https://localhost:44312/api/accounts', action.payload, {
-  //           observe: 'body',
-  //           responseType: 'text'
-  //         }).pipe(
-  //           map((tmp) => {
-  //             console.log(tmp);
-  //             console.log('asd');
-  //             const logInInfo: LoginViewModel = {username: action.payload['email'], password: action.payload['password']};
-  //             console.log(logInInfo);
-  //             this.store.dispatch(new authActions.RegSpinnerHide());
-  //             return {
-  //               type: authActions.LOGIN_WITH_EMAIL,
-  //               payload: logInInfo
-  //             };
-  //           })
-  //           // , catchError(() =>
-  //           //   // this.store.dispatch(new authActions.RegSpinnerHide());
-  //           //   of(new EffectError())
-  //           // )
-  //           , catchError(err => {
-  //             console.log(1);
-  //             this.store.dispatch(new authActions.RegSpinnerHide());
-  //             return this.errorHandler(err);
-  //             // return throwError(err);
-  //             }
-  //           )
-  //         );
-  //       }
-  //     )
-  //
-  //   ));
-
-
-
-
-
-
-  // @Effect()
-  // signupWithEmail = this.actions$
-  //   .ofType(authActions.SIGNUP_WITH_EMAIL).pipe(
-  //     switchMap ((action: authActions.SignupWithEmail) => {
-  //         return this.httpClient.post<SignupViewmodel>('https://localhost:44312/api/accounts', action.payload, {
-  //           observe: 'body',
-  //           responseType: 'json'
-  //         });
-  //       }
-  //     ),
-  //     // ეგრევე ამეორებს მეორეჯერ და სუ ესაა
-  //     // , retryWhen (
-  //     //   actn => {
-  //     //     console.log(actn);
-  //     //
-  //     //     return this.httpClient.post<SignupViewmodel>('https://localhost:44312/api/accounts', actn, {
-  //     //       observe: 'body',
-  //     //       responseType: 'json'
-  //     //     });
-  //     //   }
-  //     // ),
-  //     map(tmp => {
-  //       // console.log(JSON.stringify(tmp));
-  //
-  //       console.log(tmp);
-  //       // localStorage.setItem('access_token', tmp['auth_token']);
-  //       // localStorage.setItem('ref_token', tmp['ref_token']);
-  //       // this.gts.routeAfterLogIn();
-  //
-  //       return {
-  //         type: authActions.SET_TOKEN,
-  //         payload: tmp
-  //       };
-  //     })
-  //     , catchError(() => of(new EffectError()))
-  //   );
-  //
 
   constructor(private actions$: Actions,
               private httpClient: HttpClient,
