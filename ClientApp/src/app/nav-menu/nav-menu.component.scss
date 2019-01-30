@@ -1,55 +1,255 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway');
+//@import url('https://fonts.googleapis.com/css?family=Raleway');
+//
+//div.nav-menu {
+//  display: flex;
+//  height: 100%;
+//}
+//
+//.cyan
+//{
+//  text-align: center;
+//  flex-grow: 1;
+//  background: #96BEC0;
+//}
+//div.cyan a
+//{
+//  color: #FFF;
+//  text-decoration: none;
+//  font: 18px Raleway;
+//  //margin: 0px 10px;
+//  padding: 10px 10px;
+//  z-index: 0;
+//  cursor: pointer;
+//}
+//
+//
+//
+//
+///* Brackets go out */
+//div.brackets a:before, div.brackets a:after
+//{
+//  opacity: 0;
+//  font-size: 30px;
+//  top: 0px;
+//  transition: all 0.3s;
+//}
+//
+//div.brackets a:before
+//{
+//  content: '(';
+//  left: 0px;
+//  transform: translateX(10px);
+//}
+//
+//div.brackets a:after
+//{
+//  content: ')';
+//  right: 0px;
+//  transform: translateX(-10px);
+//}
+//
+//div.brackets a:hover:before, div.brackets a:hover:after
+//{
+//  opacity: 1;
+//  transform: translateX(0px);
+//}
 
-div.nav-menu {
+@import url('https://fonts.googleapis.com/css?family=Righteous');
+@import url('https://fonts.googleapis.com/css?family=Major+Mono+Display');
+
+@import url('https://fonts.googleapis.com/css?family=B612+Mono');
+
+
+.itemcenter {
+  flex: 0 1 auto;
+  width: 150px;
+  height: 100px;
+  position: absolute;             /* new */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.itemright {
+  flex: 0 1 auto;
+  width: 100px;
+  height: 100px;
+  margin-left: auto;              /* new */
+}
+
+//body {
+//  margin: 0px;
+//  font-family: 'Major Mono Display', monospace;
+//}
+
+.nav {
+  height: 50px;
+  width: 100%;
+  background-color: #F7F7F7;
   display: flex;
-  height: 100%;
+  justify-content: flex-start;
+  align-items: center;
+  font-family: 'B612 Mono', monospace;
 }
 
-.cyan
-{
-  text-align: center;
-  flex-grow: 1;
-  background: #96BEC0;
+.nav > .nav-header {
+  align-self: flex-start;
+  margin-right: auto;
+  margin-left: 20px;
 }
-div.cyan a
-{
-  color: #FFF;
-  text-decoration: none;
-  font: 18px Raleway;
-  //margin: 0px 10px;
-  padding: 10px 10px;
-  z-index: 0;
+
+.nav > .nav-header > .nav-title {
+  border: none;
+  outline:none;
+  display: inline-block;
+  font-size: 22px;
+  color: #333333;
+  padding: 10px 10px 10px 10px;
+  font-family: 'Righteous', cursive;
   cursor: pointer;
 }
 
-
-
-
-/* Brackets go out */
-div.brackets a:before, div.brackets a:after
-{
-  opacity: 0;
-  font-size: 30px;
-  top: 0px;
-  transition: all 0.3s;
+.nav > .nav-btn {
+  display: none;
 }
 
-div.brackets a:before
-{
-  content: '(';
-  left: 0px;
-  transform: translateX(10px);
+.nav > .nav-links {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+
 }
 
-div.brackets a:after
-{
-  content: ')';
-  right: 0px;
-  transform: translateX(-10px);
+.nav > .profile-button {
+  cursor: pointer;
+  margin-left: auto;
+  margin-right: 20px;
+  img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 40px;
+  }
 }
 
-div.brackets a:hover:before, div.brackets a:hover:after
-{
-  opacity: 1;
-  transform: translateX(0px);
+.nav > .nav-links > a {
+  display: inline-block;
+  padding: 13px 10px 13px 10px;
+  text-decoration: none;
+  color: #444444;
 }
+
+.nav > .nav-links > a:hover {
+  background-color: #CDD6D5;
+}
+
+.nav > #nav-check {
+  display: none;
+}
+
+
+
+
+
+
+
+
+
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 20px;
+  margin-top: 5px;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: right;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.show-drop-down {
+  display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media (max-width:600px) {
+  .nav > .nav-btn {
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+  }
+  .nav > .nav-btn > label {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding: 13px;
+  }
+  .nav > .nav-btn > label:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+  .nav > .nav-btn > label > span {
+    display: block;
+    width: 25px;
+    height: 10px;
+    border-top: 2px solid #eee;
+  }
+  .nav > .nav-links {
+    position: absolute;
+    display: block;
+    width: 100%;
+    background-color: #333;
+    height: 0px;
+    transition: all 0.3s ease-in;
+    overflow-y: hidden;
+    top: 50px;
+    left: 0px;
+  }
+  .nav > .nav-links > a {
+    display: block;
+    width: 100%;
+  }
+  .nav > #nav-check:not(:checked) + .nav-links {
+    height: 0px;
+  }
+  .nav > #nav-check:checked + .nav-links {
+    height: calc(100vh - 50px);
+    overflow-y: auto;
+  }
+}
+

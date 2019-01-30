@@ -37,6 +37,7 @@ import {faYoutube } from '@fortawesome/free-brands-svg-icons';
 import {faPollH, faImages, faSmile} from '@fortawesome/free-solid-svg-icons';
 import { AddArticleComponent } from './add-article/add-article.component';
 import {QUILL_CONFIG, QuillConfigInterface, QuillModule} from 'ngx-quill-wrapper';
+import {OutclickDirective} from './sources/directives/csole-dropdown-menu-directive';
 
 
 library.add(faYoutube, faSmile, faImages, faPollH);
@@ -64,6 +65,7 @@ const DEFAULT_QUILL_CONFIG: QuillConfigInterface = {
     BubbleClassDirective,
     YoutubeSanitizerPipe,
     AddArticleComponent,
+    OutclickDirective
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
