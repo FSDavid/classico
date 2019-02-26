@@ -88,7 +88,7 @@ export class GetTokenService {
   }
 
   refreshToken() { // : Observable<any>
-    console.log('refreshing');
+    // console.log('refreshing');
 
     // return this.httpClient.get('api/SampleData/TestAction', {
     //   observe: 'body',

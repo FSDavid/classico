@@ -43,6 +43,7 @@ export function userStateReducer (state = initialState, action: userStatusActons
       // const decodedToken = helper.decodeToken(action.payload['auth_token']);
       // const expirationDate = helper.getTokenExpirationDate(action.payload['auth_token']);
 
+
       localStorage.setItem('access_token', action.payload['auth_token']);
       localStorage.setItem('ref_token', action.payload['ref_token']);
 

@@ -45,7 +45,12 @@ namespace classico.Controllers
             var result = await _userManager.CreateAsync(userIdentity, model.Password);
             if (!result.Succeeded) return new ConflictObjectResult(Errors.AddErrorsToModelState(result, ModelState));
 
-            await _applicationDbContext.Customers.AddAsync(new Customer { IdentityId = userIdentity.Id, Location = model.Location });
+                await _applicationDbContext.Customers.AddAsync(
+                    new Customer
+                    {
+                        IdentityId = userIdentity.Id,
+                        UserLink = Guid.NewGuid().ToString(),
+                    });
             await _applicationDbContext.SaveChangesAsync();
 
 
@@ -68,24 +73,11 @@ namespace classico.Controllers
                 return BadRequest("Email is incorrect.");
             }
 
-            //var code = await _userManager.password
-
             var code = await _userManager.GeneratePasswordResetTokenAsync(user);
 
 
             var callbackUrlCode = Uri.EscapeDataString(code);
             var callbackUrlString = $"https://localhost:44312/auth/resetpassword?userId={user.Id}&code={callbackUrlCode}&page=resetpassword";
-
-            //var callbackUrl1 = Url.Content(callbackUrlString);
-            //var callbackUrl2 = new Uri(callbackUrlString);
-            //var callbackUrl3 = HttpUtility.UrlEncode(callbackUrlString);
-            
-
-            //var callbackUrl = Url.Page(
-            //    "resetpassword",
-            //    pageHandler: null,
-            //    values: new { userId = user.Id, code = code },
-            //    protocol: Request.Scheme);
 
             await _emailSender.SendEmailAsync(forgotPasswordEmail.Email, "Confirm your email",
                 $"Hello, <br /> You can reset your password with <a href='{HtmlEncoder.Default.Encode(callbackUrlString)}'>clicking here</a>.");

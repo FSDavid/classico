@@ -44,7 +44,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\Migrations\" />
     <Folder Include="Models\Menu\" />
     <Folder Include="ViewModels\Validations\" />
   </ItemGroup>

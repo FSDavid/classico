@@ -7,6 +7,7 @@ import {FacebookEmailViewModel} from '../facebook-login/facebook-email-view-mode
 export const LOGIN_WITH_EMAIL = 'LOGIN_WITH_EMAIL';
 export const LOGIN_WITH_FACEBOOK = 'LOGIN_WITH_FACEBOOK';
 export const FB_EMAIL_LOGIN = 'FB_EMAIL_LOGIN';
+export const LOGGED_IN = 'LOGGED_IN';
 export const SEND_FORGOT_EMAIL = 'SEND_FORGOT_EMAIL';
 export const SIGNUP_WITH_EMAIL = 'SIGNUP_WITH_EMAIL';
 export const LOGOUT = 'LOGOUT';
@@ -44,6 +45,10 @@ export class LoginWithFacebook implements Action {
 export class LoginWithFacebookEmail implements Action {
   readonly type = FB_EMAIL_LOGIN;
   constructor (public payload: FacebookEmailViewModel) {}
+}
+
+export class LoggedIn implements Action {
+  readonly type = LOGGED_IN;
 }
 
 export class SendForgotEmail implements Action {
@@ -132,6 +137,7 @@ export class FbEmailHide implements Action {
 export type UserStatusActons = LoginWithEmail
   | SignupWithEmail
   | LoginWithFacebook
+  | LoggedIn
   | SendForgotEmail
   | Logout
   | GetStatus

@@ -6,8 +6,8 @@ import * as authActions from '../store/auth.actions';
 import * as authReducer from '../store/auth.reducers';
 import {ElementRef} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
-import {Observable} from 'rxjs/Rx';
 import {FacebookEmailViewModel} from '../facebook-login/facebook-email-view-model';
+import { Observable } from 'rxjs';
 
 @Component({
 selector: 'app-login',
@@ -23,6 +23,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   passwordVisible = false;
 
+  // tslint:disable-next-line:max-line-length
   authIsLoadingObservable: Observable<{authIsLoadingFromState: boolean, incorrectAuth: boolean, forgotEmailSent: boolean, fbEmail: boolean, fbToken: string}>;
   authIsLoading = false;
   incorrectAuth = false;
@@ -53,17 +54,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
 
   ngAfterViewInit() {
-
-    // const source = timer(1000, 1000);
-    // // output: 0,1,2,3,4,5......
-    // const subscribe = source.subscribe(
-    //   val => {
-    //     // console.log(this.uf.nativeElement.value);
-    //   }
-    // );
-
     this.uf.nativeElement.focus();
-
     this.emailModel = this.uf.nativeElement.value;
     this.passwordModel = this.pf.nativeElement.value;
 

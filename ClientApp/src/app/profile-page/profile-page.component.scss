@@ -1,0 +1,242 @@
+@import '../sources/style/article';
+@import '../sources/style/card';
+
+.page-content {
+  max-width: 800px;
+  //background: #f7f7f7;
+  margin: auto;
+
+}
+
+.shadow {
+  -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.39);
+  -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.39);
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.39);
+}
+
+//.edit-icon{
+//  width: 20px;
+//  height: 20px;
+//  position: absolute;
+//  top: -5px;
+//  right: -15px;
+//}
+
+.edit-button {
+  font-size: 10px;
+  color: blue;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+.profile {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  .hed-side {
+    background: #f7f7f7;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .image-side {
+    position: relative;
+    overflow: hidden;
+    background: #3085a3;
+    .edit-image-block {
+      position: absolute;
+      width: 100%;
+      top: 0;
+      padding: 1em;
+      height: 3.75em;
+      background: #fff;
+      color: #3c4a50;
+      display: flex;
+      justify-content: space-between;
+      -webkit-transition: -webkit-transform 0.35s;
+      transition: transform 0.35s;
+      -webkit-transform: translate3d(0,-100%,0);
+      transform: translate3d(0,-100%,0);
+      span {
+        cursor: pointer;
+      }
+    }
+    .vl {
+      display: inline;
+      border-left: 1px solid black;
+      height: 100%;
+    }
+    .profile-photo {
+      object-fit: cover;
+      width: 300px;
+      height: 350px;
+    }
+  }
+  .image-side:hover .edit-image-block {
+    -webkit-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+  }
+
+  .save-icon {
+    width: 20px;
+    height: 20px;
+    margin: 0 0 0 5px;
+    cursor: pointer;
+  }
+
+  .add-link-input {
+    min-width: 30px;
+    background: transparent;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid black;
+  }
+
+  .calendar-input {
+    display: flex;
+    align-items: center;
+  }
+
+  .tabs-side {
+    margin: 20px 0 20px 0;
+
+    height: 40px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+  }
+
+  .tabs-centered {
+    padding: 20px;
+    background-color: #444444;
+    cursor: pointer;
+    color: #f7f7f7;
+    display: flex;
+    align-items: center;
+    .material-icons {
+      margin-right: 5px;
+    }
+  }
+
+  .selected-tabs-centred {
+    background-color: #23241f;
+    color: #7f7f7f;
+  }
+
+  .profile-title {
+    color: #3d4451;
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1.1;
+    margin-bottom: 10px;
+    margin-top: 20px;
+  }
+
+  .speech-bubble {
+    position: relative;
+    background-color: #444444;
+    color: #f7f7f7;
+    padding: 3px 5px 3px 10px;
+    margin: 10px 0 10px 0;
+    display: inline-block;
+  }
+
+  .speech-bubble:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    width: 0;
+    height: 0;
+    border: 8px solid transparent;
+    border-top-color: #444444;
+    border-bottom: 0;
+    border-left: 0;
+    margin-left: -4px;
+    margin-bottom: -8px;
+  }
+
+  .profile-about {
+    margin-left: 20px;
+  }
+
+  .profile-list {
+    display: table;
+    .clearfix {
+      display: table-row;
+    }
+    .title {
+      display: table-cell;
+    }
+    .cont {
+      display: table-cell;
+      padding-left: 10px;
+    }
+  }
+}
+.node-side {
+  //margin-top: 20px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: flex-start;
+
+}
+
+
+
+$offset: 187;
+$duration: 1.4s;
+
+.spinner {
+  animation: rotator $duration linear infinite;
+}
+
+@keyframes rotator {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(270deg); }
+}
+
+.path {
+  stroke-dasharray: $offset;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  animation:
+    dash $duration ease-in-out infinite,
+    colors ($duration*4) ease-in-out infinite;
+}
+
+@keyframes colors {
+  0% { stroke: #4285F4; }
+  25% { stroke: #DE3E35; }
+  50% { stroke: #F7C223; }
+  75% { stroke: #1B9A59; }
+  100% { stroke: #4285F4; }
+}
+
+@keyframes dash {
+  0% { stroke-dashoffset: $offset; }
+  50% {
+    stroke-dashoffset: $offset/4;
+    transform:rotate(135deg);
+  }
+  100% {
+    stroke-dashoffset: $offset;
+    transform:rotate(450deg);
+  }
+}
+
+
+
+
+
+
+
+
+

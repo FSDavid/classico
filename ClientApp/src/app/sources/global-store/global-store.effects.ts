@@ -2,12 +2,13 @@ import * as globalStoreActions from './global-store.actions';
 import * as globalStoreReducer from './globalstores.reducers';
 
 import {Injectable} from '@angular/core';
-import {Actions, Effect} from '@ngrx/effects';
-import {Store} from '@ngrx/store';
+import {Actions, Effect, ofType} from '@ngrx/effects';
+import {Action, Store} from '@ngrx/store';
 import {HttpClient} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs/index';
-import {map, switchMap} from 'rxjs/internal/operators';
+import {catchError, map, mergeMap, retryWhen} from 'rxjs/internal/operators';
 import {WeatherForecast} from '../../fetch-data/fetch-data.component';
+import {GetUserInfo} from './global-store.actions';
 
 @Injectable()
 export class GlobalStoreEffects {
@@ -29,6 +30,25 @@ export class GlobalStoreEffects {
   //         };
   //       })
   //   );
+
+  @Effect()
+  getUserInfo: Observable<Action> = this.actions$.pipe(
+    ofType<GetUserInfo>('GET_USER_INFO'),
+    mergeMap((action) => {
+        return this.httpClient.get('https://localhost:44312/api/dashboard/getuserinfo', {
+          // headers: {'authorization' : 'Bearer ' + action.payload},
+          observe: 'body',
+          responseType: 'json'
+        }).pipe(
+          map(data => {
+              return {type: 'SET_USER_INFO', payload: data };
+            }
+          ),
+          catchError(() => [{type: 'LOGOUT'}])
+        );
+      }
+    )
+  );
 
 
 

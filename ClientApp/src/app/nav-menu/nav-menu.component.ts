@@ -1,17 +1,33 @@
-import {Component, HostListener} from '@angular/core';
+import {Component, HostListener, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
 import {GetTokenService} from '../sources/shared/getToken.service';
+import {UserModel} from '../sources/models/user.model';
+import {Observable} from 'rxjs/Rx';
+import * as globalStoreActions from '../sources/global-store/global-store.actions';
+import * as globalStoreReducer from '../sources/global-store/globalstores.reducers';
+import {Store} from '@ngrx/store';
 
 @Component({
   selector: 'app-nav-menu',
   templateUrl: './nav-menu.component.html',
   styleUrls: ['./nav-menu.component.scss']
 })
-export class NavMenuComponent {
+export class NavMenuComponent implements OnInit{
 
-  dropdownvisible: false;
+  dropdownvisible = false;
+  username = 'Davita';
 
-  constructor(private router: Router, private gts: GetTokenService) {}
+  userData: UserModel;
+  userDataObservable: Observable<{userInfo: UserModel}>;
+
+  constructor(private store: Store<globalStoreReducer.GlobalstoresState>, private router: Router, private gts: GetTokenService) {}
+
+  ngOnInit() {
+    this.userDataObservable = this.store.select('globalStores');
+    this.userDataObservable.subscribe(s => {
+      this.userData = s.userInfo;
+    })
+  }
 
   logOut() {
     this.gts.clearToken();

@@ -61,7 +61,7 @@ namespace classico.Controllers
             }
 
             // 3. we've got a valid token so we can request user data from fb
-            var userInfoResponse = await Client.GetStringAsync($"https://graph.facebook.com/v2.8/me?fields=id,email,first_name,last_name,name,gender,locale,birthday,picture&access_token={model.AccessToken}");
+            var userInfoResponse = await Client.GetStringAsync($"https://graph.facebook.com/v3.2/me?fields=id,email,first_name,last_name,name,gender,locale,birthday,picture.width(1000).height(1000)&access_token={model.AccessToken}");
             var userInfo = JsonConvert.DeserializeObject<FacebookUserData>(userInfoResponse);
 
             var user = _userManager.Users.SingleOrDefault(usr => usr.FacebookId == userInfo.Id);
@@ -92,7 +92,15 @@ namespace classico.Controllers
 
                 if (!result.Succeeded) return new BadRequestObjectResult(Errors.AddErrorsToModelState(result, ModelState));
 
-                await _appDbContext.Customers.AddAsync(new Customer { IdentityId = appUser.Id, Location = "", Locale = userInfo.Locale, Gender = userInfo.Gender });
+                await _appDbContext.Customers.AddAsync(
+                    new Customer
+                    {
+                        IdentityId = appUser.Id,
+                        UserLink = Guid.NewGuid().ToString(),
+                        Locale = userInfo.Locale,
+                        Gender = userInfo.Gender,
+                        //DateOfBirth = userInfo.
+                    });
                 await _appDbContext.SaveChangesAsync();
             } else if (userInfo.Email == null)
             {
@@ -135,7 +143,7 @@ namespace classico.Controllers
             }
 
             // 3. we've got a valid token so we can request user data from fb
-            var userInfoResponse = await Client.GetStringAsync($"https://graph.facebook.com/v2.8/me?fields=id,email,first_name,last_name,name,gender,locale,birthday,picture&access_token={model.AccessToken}");
+            var userInfoResponse = await Client.GetStringAsync($"https://graph.facebook.com/v2.8/me?fields=id,email,first_name,last_name,name,gender,locale,birthday,picture.width(1000).height(1000)&access_token={model.AccessToken}");
             var userInfo = JsonConvert.DeserializeObject<FacebookUserData>(userInfoResponse);
 
             // 4. register user
@@ -153,7 +161,14 @@ namespace classico.Controllers
 
             if (!result.Succeeded) return new BadRequestObjectResult(Errors.AddErrorsToModelState(result, ModelState));
 
-            await _appDbContext.Customers.AddAsync(new Customer { IdentityId = appUser.Id, Location = "", Locale = userInfo.Locale, Gender = userInfo.Gender });
+            await _appDbContext.Customers.AddAsync(
+                new Customer
+                {
+                    IdentityId = appUser.Id,
+                    UserLink = Guid.NewGuid().ToString(),
+                    Locale = userInfo.Locale,
+                    Gender = userInfo.Gender,
+                });
             await _appDbContext.SaveChangesAsync();
             
 

@@ -7,11 +7,10 @@ import * as authActions from './auth.actions';
 import * as authReducer from './auth.reducers';
 import {LoginViewModel} from '../login/login-view-model';
 import {catchError, map, mergeMap, retryWhen, switchMap} from 'rxjs/internal/operators';
-import {ActivatedRoute, ActivatedRouteSnapshot, Params, Router} from '@angular/router';
 import {GetTokenService} from '../../sources/shared/getToken.service';
-import {SignupViewmodel} from '../signup/sign-up-view-model';
 import {Action, Store} from '@ngrx/store';
-import {LoginWithEmail, LoginWithFacebook, SendForgotEmail, SignupWithEmail} from './auth.actions';
+import {LoggedIn, LoginWithEmail, LoginWithFacebook, SendForgotEmail, SignupWithEmail} from './auth.actions';
+import {UpdateUserInfoService} from '../../sources/services/updateUserInfo.service';
 
 @Injectable()
 export class UserEffects {
@@ -35,6 +34,7 @@ export class UserEffects {
                {type: 'SET_TOKEN', payload: data },
                {type: 'AUTH_SPINNER_HIDE'},
                {type: 'INCORRECT_AUTH_HIDE'},
+               {type: 'LOGGED_IN'},
              ];
             }
           ),
@@ -51,7 +51,8 @@ export class UserEffects {
         this.store.dispatch(new authActions.AuthSpinnerShow());
         this.store.dispatch(new authActions.IncorrectAuthHide());
         this.store.dispatch(new authActions.SetFbToken(action.payload.accessToken));
-        return this.httpClient.post('https://localhost:44312/api/facebooklogin', action.payload, {
+
+      return this.httpClient.post('https://localhost:44312/api/facebooklogin', action.payload, {
           observe: 'body',
           responseType: 'json'
         }).pipe(
@@ -69,7 +70,9 @@ export class UserEffects {
                {type: 'SET_TOKEN', payload: data },
                {type: 'AUTH_SPINNER_HIDE'},
                {type: 'INCORRECT_AUTH_HIDE'},
-             ];
+               {type: 'LOGGED_IN'},
+
+            ];
             }
           ),
           catchError(() => [{type: 'AUTH_SPINNER_HIDE'}, {type: 'INCORRECT_AUTH_SHOW'}])
@@ -86,22 +89,41 @@ export class UserEffects {
       this.store.dispatch(new authActions.FbEmailHide());
       this.store.dispatch(new authActions.IncorrectAuthHide());
       this.store.dispatch(new authActions.SetFbToken(''));
-        return this.httpClient.post('https://localhost:44312/api/facebookloginemail', action.payload, {
+
+      return this.httpClient.post('https://localhost:44312/api/facebookloginemail', action.payload, {
           observe: 'body',
           responseType: 'json'
         }).pipe(
           mergeMap(data => {
             this.gts.routeAfterLogIn();
             this.store.dispatch(new authActions.SetFbToken(''));
+
             return [
                {type: 'SET_TOKEN', payload: data },
                {type: 'AUTH_SPINNER_HIDE'},
                {type: 'INCORRECT_AUTH_HIDE'},
-             ];
+               {type: 'LOGGED_IN'},
+
+            ];
             }
           ),
           catchError(() => [{type: 'AUTH_SPINNER_HIDE'}, {type: 'INCORRECT_AUTH_SHOW'}])
         );
+      }
+    )
+  );
+
+  @Effect()
+  loggedIn$ = this.actions$.pipe(
+    ofType<LoggedIn>('LOGGED_IN'),
+    mergeMap(() => {
+      this.updateUserInfoService.updateUserInfo();
+
+      return [
+               {type: 'AUTH_SPINNER_HIDE'},
+               {type: 'INCORRECT_AUTH_HIDE'},
+             ];
+
       }
     )
   );
@@ -166,5 +188,7 @@ export class UserEffects {
   constructor(private actions$: Actions,
               private httpClient: HttpClient,
               private gts: GetTokenService,
-              private store: Store<authReducer.UserState>) {}
+              private store: Store<authReducer.UserState>,
+              private updateUserInfoService: UpdateUserInfoService,
+              ) {}
 }

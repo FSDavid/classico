@@ -23,7 +23,7 @@ import {GlobalStoreEffects} from './sources/global-store/global-store.effects';
 import {globalStoresReducer} from './sources/global-store/globalstores.reducers';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import {TabDirective} from './sources/directives/tab.directive';
-import {MatIconModule} from '@angular/material';
+import {MatIconModule, MatTooltipModule, MatButton, MatButtonModule} from '@angular/material';
 import {AutosizeDirective} from './sources/directives/autosize.directive';
 import {ScrollDownChatDirective} from './sources/directives/scroll-down-chat.directive';
 import {MouseOverMessage} from './sources/directives/mouse-over-message';
@@ -38,6 +38,12 @@ import {faPollH, faImages, faSmile} from '@fortawesome/free-solid-svg-icons';
 import { AddArticleComponent } from './add-article/add-article.component';
 import {QUILL_CONFIG, QuillConfigInterface, QuillModule} from 'ngx-quill-wrapper';
 import {OutclickDirective} from './sources/directives/csole-dropdown-menu-directive';
+import { ProfilePageComponent } from './profile-page/profile-page.component';
+import {UpdateUserInfoService} from './sources/services/updateUserInfo.service';
+import { ErrorPageComponent } from './error-page/error-page.component';
+import {DefaultImageDirective} from './sources/directives/default-image.directive';
+import {GetCostumerService} from './sources/services/getCostumer.service';
+import {NgxMyDatePickerModule} from 'ngx-mydatepicker';
 
 
 library.add(faYoutube, faSmile, faImages, faPollH);
@@ -65,7 +71,10 @@ const DEFAULT_QUILL_CONFIG: QuillConfigInterface = {
     BubbleClassDirective,
     YoutubeSanitizerPipe,
     AddArticleComponent,
-    OutclickDirective
+    OutclickDirective,
+    ProfilePageComponent,
+    ErrorPageComponent,
+    DefaultImageDirective,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -94,6 +103,10 @@ const DEFAULT_QUILL_CONFIG: QuillConfigInterface = {
     FlexLayoutModule,
     FontAwesomeModule,
     QuillModule,
+    NgxMyDatePickerModule.forRoot(),
+
+
+    MatTooltipModule,
   ],
   providers: [
    GetTokenService,
@@ -107,6 +120,8 @@ const DEFAULT_QUILL_CONFIG: QuillConfigInterface = {
       provide: QUILL_CONFIG,
       useValue: DEFAULT_QUILL_CONFIG
     },
+    UpdateUserInfoService,
+    GetCostumerService,
 
   ],
   bootstrap: [AppComponent],

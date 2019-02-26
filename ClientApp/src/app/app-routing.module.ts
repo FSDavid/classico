@@ -6,6 +6,8 @@ import {FetchDataComponent} from './fetch-data/fetch-data.component';
 import {AuthGuard} from './sources/guards/auth.guard';
 import {LogedInGuard} from './sources/guards/loged-in.guard';
 import {AddArticleComponent} from './add-article/add-article.component';
+import {ProfilePageComponent} from './profile-page/profile-page.component';
+import {ErrorPageComponent} from './error-page/error-page.component';
 
 const pagesRoutes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full', canActivate: [AuthGuard], },
@@ -13,6 +15,8 @@ const pagesRoutes: Routes = [
   { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthGuard] },
   { path: 'add-article', component: AddArticleComponent, canActivate: [AuthGuard] },
   { path: 'auth', loadChildren: './auth/auth.module#AuthModule', canActivate: [LogedInGuard]},
+  { path: 'error-page', component: ErrorPageComponent},
+  { path: ':username', component: ProfilePageComponent, canActivate: [AuthGuard]},
   { path: '**', redirectTo: '', canActivate: [AuthGuard]}
 
 ];

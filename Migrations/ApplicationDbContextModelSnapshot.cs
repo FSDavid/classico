@@ -84,6 +84,14 @@ namespace classico.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Comment");
+
+                    b.Property<DateTime>("DateOfBirth");
+
+                    b.Property<string>("FavoriteClub");
+
+                    b.Property<string>("FavoriteNationalTeam");
+
                     b.Property<string>("Gender");
 
                     b.Property<string>("IdentityId");
@@ -91,6 +99,8 @@ namespace classico.Migrations
                     b.Property<string>("Locale");
 
                     b.Property<string>("Location");
+
+                    b.Property<string>("UserLink");
 
                     b.HasKey("CustomerId");
 
@@ -165,11 +175,9 @@ namespace classico.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128);
+                    b.Property<string>("LoginProvider");
 
-                    b.Property<string>("ProviderKey")
-                        .HasMaxLength(128);
+                    b.Property<string>("ProviderKey");
 
                     b.Property<string>("ProviderDisplayName");
 
@@ -200,11 +208,9 @@ namespace classico.Migrations
                 {
                     b.Property<string>("UserId");
 
-                    b.Property<string>("LoginProvider")
-                        .HasMaxLength(128);
+                    b.Property<string>("LoginProvider");
 
-                    b.Property<string>("Name")
-                        .HasMaxLength(128);
+                    b.Property<string>("Name");
 
                     b.Property<string>("Value");
 

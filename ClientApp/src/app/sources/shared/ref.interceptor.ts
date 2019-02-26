@@ -40,8 +40,8 @@ export class RefInterceptor implements  HttpInterceptor {
         // So we check that and throw the error if it's the case
         if (error.status !== 401) {
           if (error.status === 409 /*&& error.error['DuplicateUserName']*/) {
-            console.log(req);
-            console.log(error.status);
+            // console.log(req);
+            // console.log(error.status);
             return throwError(error);
           }
 
@@ -58,7 +58,7 @@ export class RefInterceptor implements  HttpInterceptor {
               filter(result => result !== null),
               take(1),
               switchMap(() => {
-                console.log('do now');
+                // console.log('do now');
                 return next.handle(this.addAuthenticationToken(req));
               })
           );

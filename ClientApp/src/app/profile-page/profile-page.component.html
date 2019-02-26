@@ -1,0 +1,344 @@
+<div class="wrap" xmlns="http://www.w3.org/1999/html">
+  <div class="nav-bar">
+    <app-nav-menu></app-nav-menu>
+  </div>
+  <div class="page-content">
+    <div class="profile">
+      <div class=" shadow hed-side">
+
+
+
+
+        <div class="image-side">
+          <img class="profile-photo" src={{costumerData.pictureUrl}} default="../../assets/icons/default-profile-picture.jpg"/>
+          <div class="edit-image-block">
+            <span>Upload picture</span>
+            <div *ngIf="fbConnected" class="vl"></div>
+            <span *ngIf="fbConnected">Set fb profile picture</span>
+          </div>
+        </div>
+
+
+
+        <form [formGroup]="userForm">
+        <div class="profile-about" >
+          <div *ngIf="costumerData.comment || isOwner">
+            <span class="speech-bubble" *ngIf="!isOwner">{{costumerData.comment}}</span>
+
+            <span *ngIf="costumerData.comment && isOwner">
+              <span *ngIf = "!editComment">
+                <span class="speech-bubble">{{costumerData.comment}} </span>
+                <span class="edit-button" (click)="enableCommentEditing();">Edit Comment</span>
+              </span>
+              <span *ngIf = "editComment">
+                <input autocomplete="off" id="commentEdit" formControlName="commentEdit" class="speech-bubble" #EditCommentField/>
+                <img *ngIf="f.commentEdit.invalid && (f.commentEdit.dirty || f.commentEdit.touched)"
+                      class="save-icon"
+                      src ="../../assets/icons/warning.svg"
+                      matTooltip="Write minimum 3 characters"/>
+                <img *ngIf="f.commentEdit.valid && (f.commentEdit.dirty)" class="save-icon" src ="../../assets/icons/checked.svg"/>
+                <img class="save-icon" (click) = "editComment = false;" src ="../../assets/icons/cancel.svg"/>
+              </span>
+            </span>
+
+            <span *ngIf="!costumerData.comment && isOwner">
+              <span *ngIf="addComment">
+                <input formControlName="commentAdd" class="speech-bubble" #AddCommentField/>
+                <img *ngIf="f.commentAdd.invalid && (f.commentAdd.dirty || f.commentAdd.touched)" class="save-icon" src ="../../assets/icons/warning.svg"/>
+                <img *ngIf="f.commentAdd.valid && (f.commentAdd.dirty)" class="save-icon" src ="../../assets/icons/checked.svg"/>
+                <img class="save-icon" (click) = "addComment = false;" src ="../../assets/icons/cancel.svg"/>
+              </span>
+              <span *ngIf="!addComment" (click)="addComment = true;" class="edit-button" (click) ="enableCommentAdding();">Add Comment</span>
+            </span>
+          </div>
+          <h1 class="profile-title" *ngIf="!editName">
+            {{costumerData.firstName}}
+            {{costumerData.lastName}}
+            <span *ngIf="isOwner" (click) = "enableNameEditing()" class="edit-button">Edit Name</span>
+          </h1>
+          <h1 class="profile-title" *ngIf="editName">
+            <input class="add-link-input"
+                   #EditFirstNameField
+                   onkeypress="this.style.width = ((this.value.length + 1) * 17 + 20) + 'px';"
+                   formControlName="firstNameEdit"/>
+            <img *ngIf="f.firstNameEdit.invalid && (f.firstNameEdit.dirty || f.firstNameEdit.touched)" class="save-icon" src ="../../assets/icons/warning.svg" matTooltip="Write minimum 2 characters"/>
+            <br />
+            <input class="add-link-input"
+                   #EditLastNameField
+                   onkeypress="this.style.width = ((this.value.length + 1) * 17) + 'px';"
+                   formControlName="lastNameEdit"/>
+            <img *ngIf="f.lastNameEdit.invalid && (f.lastNameEdit.dirty || f.lastNameEdit.touched)" class="save-icon" src ="../../assets/icons/warning.svg" matTooltip="Write minimum 2 characters"/>
+            <img *ngIf="f.firstNameEdit.valid && f.lastNameEdit.valid && (f.lastNameEdit.dirty || f.firstNameEdit.dirty)" class="save-icon" src ="../../assets/icons/checked.svg"/>
+            <img class="save-icon" (click) = "editName = false;" src ="../../assets/icons/cancel.svg"/>
+          </h1>
+          <div class="profile-list">
+            <!--<div class="clearfix">-->
+              <!--<strong class="title">Role</strong>-->
+              <!--<span class="cont">Writer</span>-->
+            <!--</div>-->
+            <div  *ngIf="hasUrl || isOwner" class="clearfix">
+              <span *ngIf="!isOwner">
+                <span class="cont" style="padding-left: 0;"><span style="font-weight: bold">classico.ge/</span>{{costumerData.userLink}}</span>
+              </span>
+
+              <span *ngIf="isOwner && hasUrl">
+                <span class="cont" style="padding-left: 0;">
+                  <span style="font-weight: bold">classico.ge/</span>
+                </span>
+                <span *ngIf = "editLink">
+                  <input formControlName="userLinkEdit" class="add-link-input" #EditLinkField/>
+                  <img *ngIf="f.userLinkEdit.invalid && (f.userLinkEdit.dirty)"
+                         class="save-icon"
+                         src ="../../assets/icons/warning.svg"
+                         [matTooltip]="f.userLinkEdit.errors?.linkNotAvaliable? 'Link is not available' : 'Write minimum 4 characters'"/>
+
+                  <span class="save-icon" *ngIf="f.userLinkEdit.pending && (f.userLinkEdit.dirty)" matTooltip ="Please wait...">
+                    <svg
+                         class="spinner" width="20px" height="20px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                      <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+                    </svg>
+                  </span>
+
+                  <img *ngIf="f.userLinkEdit.valid && (f.userLinkEdit.dirty)" class="save-icon" src ="../../assets/icons/checked.svg"/>
+                  <img class="save-icon" (click) = "editLink = false;" src ="../../assets/icons/cancel.svg"/>
+                </span>
+                <span *ngIf = "!editLink">
+                  <span>{{costumerData.userLink}}</span>
+                  <span (click) ="enableLinkEditing()" class="edit-button">Edit User Link</span>
+                </span>
+              </span>
+
+              <span *ngIf="isOwner && !hasUrl">
+                <span class="cont" style="padding-left: 0;">
+                  <span style="font-weight: bold">classico.ge/</span>
+                </span>
+                <span *ngIf="addLink">
+                  <input formControlName="userLinkAdd" class="add-link-input" #AddLinkField/>
+                  <img *ngIf="f.userLinkAdd.invalid && (f.userLinkAdd.dirty)" class="save-icon" src ="../../assets/icons/warning.svg" matTooltip="Write minimum 4 characters"/>
+                  <span class="save-icon" *ngIf="f.userLinkEdit.pending && (f.userLinkEdit.dirty)" matTooltip ="Please wait...">
+                    <svg
+                      class="spinner" width="20px" height="20px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                      <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+                    </svg>
+                  </span>
+                  <img *ngIf="f.userLinkAdd.valid && (f.userLinkAdd.dirty)" class="save-icon" src ="../../assets/icons/checked.svg"/>
+                  <img class="save-icon" (click) = "addLink = false;" src ="../../assets/icons/cancel.svg"/>
+                </span>
+                <span *ngIf="!addLink" (click) ="enableLinkAdding()" class="edit-button">Add User Link</span>
+              </span>
+            </div>
+
+
+            <div *ngIf="costumerData.dateOfBirth || isOwner" class="clearfix">
+              <span *ngIf="!isOwner">
+                <strong class="title">Age</strong>
+                <span class="cont">{{age}}</span>
+              </span>
+              <span *ngIf="isOwner && costumerData.dateOfBirth">
+                <strong *ngIf="!editAge" class="title">Age</strong>
+                <span *ngIf="editAge">
+                  <span class="calendar-input">
+                    <div class="input-group">
+                      <input formControlName="birthDateEdit" class="form-control" style="float:none" placeholder="Select a date" ngx-mydatepicker name="mydate"
+                             [options]="myOptions" #dp="ngx-mydatepicker" (dateChanged)="onDateChanged($event)" (inputFieldChanged)="onInputFieldChanged($event, 'edit')"/>
+                      <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" (click)="dp.toggleCalendar()" >
+                          <i style="font-size: 18px;" class="material-icons">calendar_today</i>
+                        </button>
+                      </span>
+                    </div>
+                    <img *ngIf="f.birthDateEdit.invalid && f.birthDateEdit.dirty && !editDateValid" class="save-icon" src ="../../assets/icons/warning.svg" matTooltip="Date format is not valid."/>
+                    <img *ngIf="f.birthDateEdit.valid && f.birthDateEdit.dirty && editDateValid" class="save-icon" src ="../../assets/icons/checked.svg"/>
+                    <img class="save-icon" (click) = "editAge = false;" src ="../../assets/icons/cancel.svg"/>
+                  </span>
+                </span>
+                <span *ngIf="!editAge">
+                  <span class="cont">{{age}}</span>
+                  <span class="edit-button" (click)="enableAgeEditing()">Edit Birth Date</span>
+                </span>
+              </span>
+              <span *ngIf="isOwner && !costumerData.dateOfBirth">
+                <span *ngIf="addAge">
+                  <span class="calendar-input">
+                    <div class="input-group">
+                      <input formControlName="birthDateAdd" class="form-control" style="float:none" placeholder="Select a date" ngx-mydatepicker name="mydate"
+                             [options]="myOptions" #dp="ngx-mydatepicker" (dateChanged)="onDateChanged($event)" (inputFieldChanged)="onInputFieldChanged($event, 'add')"/>
+                      <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" (click)="dp.toggleCalendar()" >
+                          <i style="font-size: 18px;" class="material-icons">calendar_today</i>
+                        </button>
+                      </span>
+                    </div>
+                    <img *ngIf="f.birthDateAdd.invalid && f.birthDateAdd.dirty && !addDateValid" class="save-icon" src ="../../assets/icons/warning.svg" matTooltip="Date format is not valid."/>
+                    <img *ngIf="f.birthDateAdd.valid && f.birthDateAdd.dirty && addDateValid" class="save-icon" src ="../../assets/icons/checked.svg"/>
+                    <img class="save-icon" (click) = "addAge = false;" src ="../../assets/icons/cancel.svg"/>
+                  </span>
+                </span>
+                <span *ngIf="!addAge" (click)="enableAgeAdding()" class="edit-button">Add Birth Date</span>
+              </span>
+            </div>
+
+
+            <div class="clearfix">
+              <span>
+                <strong class="title">E-mail</strong>
+                <span *ngIf ="!editEmail">
+                  <span class="cont"><span>{{costumerData.email}}</span></span>
+                  <span *ngIf="isOwner" class="edit-button" (click) ="enableEmailEditing()">Edit Email</span>
+                </span>
+                <span *ngIf ="editEmail">
+                    <input
+                      formControlName="emailEdit"
+                      class="cont add-link-input"
+                      #EditEmailField/>
+                  <img *ngIf="f.emailEdit.invalid && (f.emailEdit.dirty)" class="save-icon" src ="../../assets/icons/warning.svg"
+                       [matTooltip]="f.emailEdit.errors?.emailNotAvailable? 'Email taken' : 'Email format is not correct'"/>
+                    <span class="save-icon" *ngIf="f.emailEdit.pending" matTooltip ="Please wait...">
+                      <svg
+                       class="spinner" width="20px" height="20px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+                       <circle class="path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle>
+                      </svg>
+                    </span>
+                    <img *ngIf="f.emailEdit.valid && (f.emailEdit.dirty)" class="save-icon" src ="../../assets/icons/checked.svg"/>
+                    <img class="save-icon" (click) = "editEmail = false;" src ="../../assets/icons/cancel.svg"/>
+                </span>
+              </span>
+
+            </div>
+            <div *ngIf="costumerData.phoneNumber || isOwner" class="clearfix">
+              <span *ngIf="!isOwner">
+                <strong class="title">Phone</strong>
+                <span class="cont"><a>{{costumerData.phoneNumber}}</a></span>
+              </span>
+              <span *ngIf="isOwner && costumerData.phoneNumber">
+                <strong class="title">Phone</strong>
+                <span *ngIf="!editNumber">
+                  <span class="cont">{{costumerData.phoneNumber}}</span>
+                  <span class="edit-button" (click) ="enableNumberEditing()">Edit Number</span>
+                </span>
+                <span *ngIf ="editNumber">
+                  <input formControlName="numberEdit" class="cont add-link-input" #EditNumberField/>
+                  <img *ngIf="f.numberEdit.invalid && f.numberEdit.dirty"
+                       class="save-icon"
+                       src ="../../assets/icons/warning.svg"
+                       matTooltip="Write minimum 5 characters"/>
+                  <img *ngIf="f.numberEdit.valid && (f.numberEdit.dirty)" class="save-icon" src ="../../assets/icons/checked.svg"/>
+                  <img class="save-icon" (click) = "editNumber = false;" src ="../../assets/icons/cancel.svg"/>
+                </span>
+              </span>
+              <span *ngIf="isOwner && !costumerData.phoneNumber">
+                <span *ngIf="!addNumber" class="edit-button" (click) ="enableNumberAdding()">Add Number</span>
+                <span *ngIf="addNumber">
+                  <strong class="title">Phone</strong>
+                  <input formControlName="numberAdd" class="cont add-link-input" #AddNumberField/>
+                  <img *ngIf="f.numberAdd.invalid && (f.numberAdd.dirty)"
+                       class="save-icon"
+                       src ="../../assets/icons/warning.svg"
+                       matTooltip="Write minimum 5 characters"/>
+                  <img *ngIf="f.numberAdd.valid && (f.numberAdd.dirty)" class="save-icon" src ="../../assets/icons/checked.svg"/>
+                  <img class="save-icon" (click) = "addNumber = false;" src ="../../assets/icons/cancel.svg"/>
+                </span>
+              </span>
+            </div>
+            <div *ngIf="costumerData.favoriteNationalTeam || isOwner" class="clearfix">
+              <span *ngIf="!isOwner">
+                <strong class="title">Favorite Team</strong>
+                <span class="cont">{{costumerData.favoriteNationalTeam}}</span>
+              </span>
+              <span *ngIf="isOwner && costumerData.favoriteNationalTeam">
+                <strong class="title">Favorite Team</strong>
+                <span *ngIf="!editTeam">
+                  <span class="cont">{{costumerData.favoriteNationalTeam}}</span>
+                  <span class="edit-button" (click) ="enableTeamEditing()">Edit favorite team</span>
+                </span>
+                <span *ngIf="editTeam">
+                  <input formControlName="favoriteTeamEdit" class="cont add-link-input" #EditTeamField/>
+                  <img *ngIf="f.favoriteTeamEdit.invalid && (f.favoriteTeamEdit.dirty || f.favoriteTeamEdit.touched)"
+                       class="save-icon"
+                       src ="../../assets/icons/warning.svg"
+                       matTooltip="Write minimum 3 characters"/>
+                  <img *ngIf="f.favoriteTeamEdit.valid && (f.favoriteTeamEdit.dirty)" class="save-icon" src ="../../assets/icons/checked.svg"/>
+                  <img class="save-icon" (click) = "editTeam = false;" src ="../../assets/icons/cancel.svg"/>
+                </span>
+              </span>
+              <span *ngIf="isOwner && !costumerData.favoriteNationalTeam">
+                <span *ngIf="!addTeam" class="edit-button" (click) = "enableTeamAdding()">Add favorite national team</span>
+                <span *ngIf="addTeam">
+                  <strong class="title">Team</strong>
+                  <input formControlName="favoriteTeamAdd" class="cont add-link-input" #AddTeamField/>
+                  <img *ngIf="f.favoriteTeamAdd.invalid && (f.favoriteTeamAdd.dirty )"
+                       class="save-icon"
+                       src ="../../assets/icons/warning.svg"
+                       matTooltip="Write minimum 3 characters"/>
+                  <img *ngIf="f.favoriteTeamAdd.valid && (f.favoriteTeamAdd.dirty)" class="save-icon" src ="../../assets/icons/checked.svg"/>
+                  <img class="save-icon" (click) = "addTeam = false;" src ="../../assets/icons/cancel.svg"/>
+                </span>
+              </span>
+            </div>
+            <div *ngIf="costumerData.favoriteClub || isOwner" class="clearfix">
+              <span *ngIf="!isOwner">
+                <strong class="title">Favorite Club</strong>
+                <span class="cont">{{costumerData.favoriteClub}}</span>
+              </span>
+              <span *ngIf="isOwner && costumerData.favoriteClub">
+                <strong class="title">Favorite Club</strong>
+                <span *ngIf="!editClub">
+                  <span class="cont">{{costumerData.favoriteClub}}</span>
+                  <span class="edit-button" (click) ="enableClubEditing()">Edit favorite Club</span>
+                </span>
+                <span *ngIf="editClub">
+                  <input formControlName="favoriteClubEdit" class="cont add-link-input" #EditClubField/>
+                  <img *ngIf="f.favoriteClubEdit.invalid && (f.favoriteClubEdit.dirty || f.favoriteClubEdit.touched)"
+                       class="save-icon"
+                       src ="../../assets/icons/warning.svg"
+                       matTooltip="Write minimum 3 characters"/>
+                  <img *ngIf="f.favoriteClubEdit.valid && (f.favoriteClubEdit.dirty)" class="save-icon" src ="../../assets/icons/checked.svg"/>
+                  <img class="save-icon" (click) = "editClub = false;" src ="../../assets/icons/cancel.svg"/>
+                </span>
+              </span>
+              <span *ngIf="isOwner && !costumerData.favoriteClub">
+                <span *ngIf="!addClub" class="edit-button" (click) ="enableClubAdding()">Add favorite Club</span>
+                <span *ngIf="addClub">
+                  <strong class="title">Club</strong>
+                  <input formControlName="favoriteClubAdd" class="cont add-link-input" #AddClubField/>
+                  <img *ngIf="f.favoriteClubAdd.invalid && (f.favoriteClubAdd.dirty )"
+                       class="save-icon"
+                       src ="../../assets/icons/warning.svg"
+                       matTooltip="Write minimum 3 characters"/>
+                  <img *ngIf="f.favoriteClubAdd.valid && (f.favoriteClubAdd.dirty)" class="save-icon" src ="../../assets/icons/checked.svg"/>
+                  <img class="save-icon" (click) = "addClub = false;" src ="../../assets/icons/cancel.svg"/>
+                </span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </form>
+      </div>
+
+      <div class="tabs-side">
+        <div><a (click)="tabSelected = 0" [ngClass] = "{'selected-tabs-centred': tabSelected === 0 }" class="shadow tabs-centered"><i class="material-icons">notifications_on</i>Following</a></div>
+        <div><a (click)="tabSelected = 1" [ngClass] = "{'selected-tabs-centred': tabSelected === 1 }" class="shadow tabs-centered"><i class="material-icons">favorite_border</i>Favorites</a></div>
+        <div><a (click)="tabSelected = 2" [ngClass] = "{'selected-tabs-centred': tabSelected === 2 }" class="shadow tabs-centered"><i class="material-icons">person</i>Work</a></div>
+      </div>
+
+  </div>
+</div>
+
+<div class="node-side">
+  <div *ngFor="let node of nodes; let i = index" style = "margin: 0 10px 0 10px;">
+    <div class="card" style="width: 400px;">
+      <div class="card_left">
+        <img src="{{node.nodeImage}}"/>
+      </div>
+      <div class="card_right" [ngStyle]="{backgroundColor: i === selectedIndex ? '#CDD6D5' : '#EEF4F2'}">
+        <div class="card-title">{{node.mainTag}}</div>
+        <div class="card_right__details">
+          <div class="card_right__review">
+            <p>{{node.nodeTitle}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

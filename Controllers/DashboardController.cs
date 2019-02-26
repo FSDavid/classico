@@ -15,7 +15,7 @@ namespace classico.Controllers
 {
   //[Authorize(Policy = "ApiUser")]
   [Authorize]
-  [Route("api/[controller]/[action]")]
+  [Route("api/[controller]")]
   public class DashboardController : Controller
   {
     private readonly ClaimsPrincipal _caller;
@@ -28,34 +28,59 @@ namespace classico.Controllers
     }
 
 
-        [HttpGet]
-        public async Task<IActionResult> HoMM()
-        {
-            return new OkObjectResult(new
-            {
-                Message = "R"
-            });
-        }
-    // GET api/dashboard/home
-        [HttpGet]
-    public async Task<IActionResult> Home()
+
+    [HttpGet("getuserinfo")]
+    public async Task<IActionResult> UserInfo()
     {
-      // retrieve the user info
-      //HttpContext.User
       var userId = _caller.Claims.Single(c => c.Type == "id");
-      var customer = await _appDbContext.Customers.Include(c => c.Identity).SingleAsync(c => c.Identity.Id == userId.Value);
+      var customer = await _appDbContext.Customers.Include(c => c.Identity).SingleOrDefaultAsync(c => c.Identity.Id == userId.Value);
       
       return new OkObjectResult(new
       {
-        Message = "This is secure API and user data!",
         customer.Identity.FirstName,
         customer.Identity.LastName,
         customer.Identity.PictureUrl,
         customer.Identity.FacebookId,
         customer.Location,
         customer.Locale,
-        customer.Gender
+        customer.UserLink
       });
+    }
+
+    [HttpGet("getclientinfo/{UserLink}")]
+    public async Task<IActionResult> ClientInfo(string UserLink)
+    {       bool IsOwner = false;
+
+            var userId = _caller.Claims.Single(c => c.Type == "id").Value;
+            var customer = await _appDbContext.Customers.Include(c => c.Identity).SingleAsync(c => c.UserLink == UserLink);
+
+            if (customer == null)
+            {
+                return BadRequest(new { message = "User does not found!" });
+            }
+            
+            
+            if (userId == customer.Identity.Id)
+            {
+                IsOwner = true;
+            }
+
+            return new OkObjectResult(new
+            {
+              IsOwner,
+              customer.Identity.FirstName,
+              customer.Identity.LastName,
+              customer.Identity.PictureUrl,
+              customer.Identity.FacebookId,
+              customer.Identity.Email,
+              customer.DateOfBirth,
+              customer.Identity.PhoneNumber,
+              customer.Comment,
+              customer.FavoriteClub,
+              customer.FavoriteNationalTeam,
+              customer.Location,
+              customer.UserLink
+            });
     }
   }
 }
