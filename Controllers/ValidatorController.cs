@@ -22,7 +22,7 @@ namespace classico.Controllers
         public async Task<bool> LinkAvaliable(string Link)
         {
             //await Task.Delay(5000);
-            var User = await _appDbContext.Customers.SingleOrDefaultAsync(c => c.UserLink == Link);
+            var User = await _appDbContext.Customers.SingleOrDefaultAsync(c => c.UserLink.ToLower() == Link.ToLower());
 
             if (User == null)
             {
@@ -36,7 +36,7 @@ namespace classico.Controllers
         [HttpGet("check-email/{Email}")]
         public async Task<bool> EmailAvaliable(string Email)
         {
-            var User = await _appDbContext.Users.SingleOrDefaultAsync(c => c.Email == Email);
+            var User = await _appDbContext.Users.SingleOrDefaultAsync(c => c.Email.ToLower() == Email.ToLower());
 
             if (User == null)
             {

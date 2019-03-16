@@ -33,7 +33,7 @@
     <a href="#" target="_blank">Scores</a>
   </div>
   <div class="profile-button">
-    <img (click)="dropdownvisible = !dropdownvisible" [src]="userData.pictureUrl" default="../../assets/icons/football.svg" class="img" (offClick)="disableSearch($event)" appOutclick>
+    <img (click)="dropdownvisible = !dropdownvisible" [src]="userData.pictureUrl" default="../../assets/icons/default-profile-picture.jpg" class="img" (offClick)="disableSearch($event)" appOutclick> <!--[urlCorrector]="userData.pictureUrl"-->
 
     <div [ngClass]="{'show-drop-down': dropdownvisible}" class="dropdown-content" id="myDropdown">
       <a routerLink="/{{userData.userLink}}">Profile</a>

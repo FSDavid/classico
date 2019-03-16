@@ -26,6 +26,11 @@ export class NavMenuComponent implements OnInit{
     this.userDataObservable = this.store.select('globalStores');
     this.userDataObservable.subscribe(s => {
       this.userData = s.userInfo;
+      // if (!this.userData.pictureUrl.startsWith('http') || !this.userData.pictureUrl.startsWith('.')) {
+      //   // this.store.dispatch(new globalStoreActions.UpdatePicture(this.userData.pictureUrl));
+      //   this.userData.pictureUrl = '../../assets/images/profile_pictures/' + this.userData.pictureUrl;
+      // }
+
     })
   }
 

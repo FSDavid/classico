@@ -1,4 +1,4 @@
-import {Directive, HostBinding, Input} from '@angular/core';
+import {Directive, HostBinding, Input, OnInit} from '@angular/core';
 
 @Directive({
   selector: 'img[default]',
@@ -14,10 +14,12 @@ export class DefaultImageDirective {
   @Input() default: string;
   // @HostBinding('class') className;
 
+
   updateUrl() {
     this.src = this.default;
   }
   load(){
+    console.log()
     // this.className = 'image-loaded';
   }
 }

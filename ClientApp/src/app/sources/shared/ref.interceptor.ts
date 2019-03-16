@@ -46,7 +46,7 @@ export class RefInterceptor implements  HttpInterceptor {
           }
 
 
-          this.gts.logOutTemp();
+          // this.gts.logOutTemp();
           return throwError(error);
           // return Observable.throw(error);
         }

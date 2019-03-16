@@ -16,7 +16,7 @@ import {tokenGetter} from './sources/shared/getToken.service';
 export class AppComponent implements OnInit, OnDestroy {
   title = 'app';
 
-  userData: UserModel = new UserModel('','','','','','','');
+  userData: UserModel = new UserModel('','','','','','','','');
   userDataObservable: Observable<{userInfo: UserModel}>;
 
 

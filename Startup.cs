@@ -28,6 +28,8 @@ using classico.Controllers.RP;
 using classico.Models.FbAuth;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using classico.Services;
+using Microsoft.Extensions.FileProviders;
+using System.IO;
 
 namespace classico
 {
@@ -210,6 +212,13 @@ namespace classico
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
+
+            app.UseStaticFiles(new StaticFileOptions()
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), @"Resources")),
+                RequestPath = new PathString("/Resources")
+            });
+
 
             app.UseMvc(routes =>
             {

@@ -12,7 +12,7 @@ export class CostumerModel {
   favoriteNationalTeam: string;
   location: string;
   userLink: string;
-
+  facebookProfilePicture: string;
 
   constructor (
     firstName: string,
@@ -27,6 +27,7 @@ export class CostumerModel {
     favoriteNationalTeam: string,
     location: string,
     userLink: string,
+    facebookProfilePicture: string,
     isOwner: boolean,
   ) {
     this.firstName = firstName;
@@ -42,6 +43,7 @@ export class CostumerModel {
     this.location = location;
     this.userLink = userLink;
     this.isOwner = isOwner;
+    this.facebookProfilePicture = facebookProfilePicture;
   }
 }
 

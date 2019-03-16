@@ -43,7 +43,8 @@ namespace classico.Controllers
         customer.Identity.FacebookId,
         customer.Location,
         customer.Locale,
-        customer.UserLink
+        customer.UserLink,
+        customer.FacebookProfilePicture
       });
     }
 
@@ -79,7 +80,8 @@ namespace classico.Controllers
               customer.FavoriteClub,
               customer.FavoriteNationalTeam,
               customer.Location,
-              customer.UserLink
+              customer.UserLink,
+              customer.FacebookProfilePicture
             });
     }
   }

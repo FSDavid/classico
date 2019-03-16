@@ -18,5 +18,6 @@ namespace classico.Models.Entities
         public string FavoriteNationalTeam { get; set; }
         public string FavoriteClub { get; set; }
         public string UserLink { get; set; }
+        public string FacebookProfilePicture { get; set; }
     }
 }

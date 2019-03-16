@@ -7,6 +7,7 @@ export class UserModel {
   location: string;
   locale: string;
   userLink: string;
+  facebookProfilePicture: string;
 
   constructor (
     firstName: string,
@@ -16,6 +17,7 @@ export class UserModel {
     location: string,
     locale: string,
     userLink: string,
+    facebookProfilePicture: string,
   ) {
     this.firstName = firstName;
     this.lastName = lastName;
@@ -24,6 +26,7 @@ export class UserModel {
     this.location = location;
     this.locale = locale;
     this.userLink = userLink;
+    this.facebookProfilePicture = facebookProfilePicture;
   }
 }
 

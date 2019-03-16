@@ -44,6 +44,8 @@ import { ErrorPageComponent } from './error-page/error-page.component';
 import {DefaultImageDirective} from './sources/directives/default-image.directive';
 import {GetCostumerService} from './sources/services/getCostumer.service';
 import {NgxMyDatePickerModule} from 'ngx-mydatepicker';
+import { UpdateCostumerService } from './sources/services/updateCostumer.service';
+import {ProfilePictureUrlCorrectorDirective} from './sources/directives/profile-picture-url-corrector.directive';
 
 
 library.add(faYoutube, faSmile, faImages, faPollH);
@@ -75,6 +77,7 @@ const DEFAULT_QUILL_CONFIG: QuillConfigInterface = {
     ProfilePageComponent,
     ErrorPageComponent,
     DefaultImageDirective,
+    ProfilePictureUrlCorrectorDirective,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -122,6 +125,7 @@ const DEFAULT_QUILL_CONFIG: QuillConfigInterface = {
     },
     UpdateUserInfoService,
     GetCostumerService,
+    UpdateCostumerService,
 
   ],
   bootstrap: [AppComponent],

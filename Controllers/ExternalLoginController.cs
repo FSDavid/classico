@@ -99,6 +99,7 @@ namespace classico.Controllers
                         UserLink = Guid.NewGuid().ToString(),
                         Locale = userInfo.Locale,
                         Gender = userInfo.Gender,
+                        FacebookProfilePicture = userInfo.Picture.Data.Url
                         //DateOfBirth = userInfo.
                     });
                 await _appDbContext.SaveChangesAsync();
@@ -168,6 +169,7 @@ namespace classico.Controllers
                     UserLink = Guid.NewGuid().ToString(),
                     Locale = userInfo.Locale,
                     Gender = userInfo.Gender,
+                    FacebookProfilePicture = userInfo.Picture.Data.Url
                 });
             await _appDbContext.SaveChangesAsync();
             

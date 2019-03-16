@@ -18,7 +18,6 @@ const pagesRoutes: Routes = [
   { path: 'error-page', component: ErrorPageComponent},
   { path: ':username', component: ProfilePageComponent, canActivate: [AuthGuard]},
   { path: '**', redirectTo: '', canActivate: [AuthGuard]}
-
 ];
 
 @NgModule({

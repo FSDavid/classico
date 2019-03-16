@@ -1,5 +1,6 @@
 @import '../sources/style/article';
 @import '../sources/style/card';
+@import '../sources/style/util';
 
 .page-content {
   max-width: 800px;
@@ -53,7 +54,7 @@
       background: #fff;
       color: #3c4a50;
       display: flex;
-      justify-content: space-between;
+      justify-content: space-around;
       -webkit-transition: -webkit-transform 0.35s;
       transition: transform 0.35s;
       -webkit-transform: translate3d(0,-100%,0);

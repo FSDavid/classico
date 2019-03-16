@@ -148,226 +148,226 @@ export class HomeComponent implements OnInit {
       postedDate: 'dotay'
     },
 
-
-    {
-      messageId : 'id2',
-      messageAuthorId : 'authid3',
-      authorImageUrl: 'https://i.ytimg.com/vi/DmIN5Vo-ST8/maxresdefault.jpg',
-      authorName: 'Prof',
-      messageType: 'images',
-      messageBody: 'teams/realmadrid.png',
-      replyMessages: [],
-      emojis: [{
-        emojiId: '1',
-        emojiUrl: '../../assets/emoji/1f595.png',
-        emojiAuthorId: '1',
-        emojiAuthorName: '1'
-      }],
-      images: [
-        {
-          imageId: 'imgid1',
-          imageUrl: 'https://wallpaperbrowse.com/media/images/soap-bubble-1958650_960_720.jpg'
-        },
-        {
-          imageId: 'imgid2',
-          imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlcfXb3a4jtMeBzpMA9QWAjPPC84XHaeC_Xg-qZ3lTFo75h-At '
-        },
-        {
-          imageId: 'imgid2',
-          imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlcfXb3a4jtMeBzpMA9QWAjPPC84XHaeC_Xg-qZ3lTFo75h-At '
-        },
-        {
-          imageId: 'imgid1',
-          imageUrl: 'https://wallpaperbrowse.com/media/images/soap-bubble-1958650_960_720.jpg'
-        },
-        {
-          imageId: 'imgid1',
-          imageUrl: 'https://wallpaperbrowse.com/media/images/soap-bubble-1958650_960_720.jpg'
-        },
-
-      ],
-      postedDate: 'dotay'
-    },
-
-    {
-      messageId : 'id2',
-      messageAuthorId : 'authid2',
-      authorImageUrl: 'https://i.ytimg.com/vi/DmIN5Vo-ST8/maxresdefault.jpg',
-      authorName: 'Prof',
-      messageType: 'images',
-      messageBody: 'teams/realmadrid.png',
-      replyMessages: [],
-      emojis: [{
-        emojiId: '1',
-        emojiUrl: '../../assets/emoji/1f595.png',
-        emojiAuthorId: '1',
-        emojiAuthorName: '1'
-      }],
-      images: [
-        {
-          imageId: 'imgid1',
-          imageUrl: 'https://wallpaperbrowse.com/media/images/soap-bubble-1958650_960_720.jpg'
-        },
-        {
-          imageId: 'imgid2',
-          imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlcfXb3a4jtMeBzpMA9QWAjPPC84XHaeC_Xg-qZ3lTFo75h-At '
-        },
-        {
-          imageId: 'imgid2',
-          imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlcfXb3a4jtMeBzpMA9QWAjPPC84XHaeC_Xg-qZ3lTFo75h-At '
-        },
-        {
-          imageId: 'imgid1',
-          imageUrl: 'https://wallpaperbrowse.com/media/images/soap-bubble-1958650_960_720.jpg'
-        },
-        {
-          imageId: 'imgid1',
-          imageUrl: 'https://wallpaperbrowse.com/media/images/soap-bubble-1958650_960_720.jpg'
-        },
-
-      ],
-    postedDate: 'dotay'
-    },
-
-
-
-
-
-    {
-      messageId : 'id2',
-      messageAuthorId : 'authid3',
-      authorImageUrl: 'https://i.ytimg.com/vi/DmIN5Vo-ST8/maxresdefault.jpg',
-      authorName: 'Prof',
-      messageType: 'video',
-      messageBody: 'https://www.youtube.com/embed/mZZsYDpS394',
-      replyMessages: [],
-      emojis: [{
-        emojiId: '1',
-        emojiUrl: '../../assets/emoji/1f595.png',
-        emojiAuthorId: '1',
-        emojiAuthorName: '1'
-      }],
-      images: [],
-      postedDate: 'dotay'
-    },
-
-
-{
-      messageId : 'id2',
-      messageAuthorId : 'authid3',
-      authorImageUrl: 'https://i.ytimg.com/vi/DmIN5Vo-ST8/maxresdefault.jpg',
-      authorName: 'Prof',
-      messageType: 'images',
-      messageBody: 'teams/realmadrid.png',
-      replyMessages: [],
-      emojis: [{
-        emojiId: '1',
-        emojiUrl: '../../assets/emoji/1f595.png',
-        emojiAuthorId: '1',
-        emojiAuthorName: '1'
-      }],
-      images: [
-        {
-          imageId: 'imgid1',
-          imageUrl: 'https://wallpaperbrowse.com/media/images/soap-bubble-1958650_960_720.jpg'
-        },
-
-      ],
-      postedDate: 'dotay'
-    },
-        {
-      messageId : 'id2',
-      messageAuthorId : 'authid2',
-      authorImageUrl: 'https://i.ytimg.com/vi/DmIN5Vo-ST8/maxresdefault.jpg',
-      authorName: 'Prof',
-      messageType: 'images',
-      messageBody: 'teams/realmadrid.png',
-      replyMessages: [],
-      emojis: [{
-        emojiId: '1',
-        emojiUrl: '../../assets/emoji/1f595.png',
-        emojiAuthorId: '1',
-        emojiAuthorName: '1'
-      }],
-      images: [
-        {
-          imageId: 'imgid1',
-          imageUrl: 'https://wallpaperbrowse.com/media/images/soap-bubble-1958650_960_720.jpg'
-        },
-        {
-          imageId: 'imgid2',
-          imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlcfXb3a4jtMeBzpMA9QWAjPPC84XHaeC_Xg-qZ3lTFo75h-At '
-        },
-
-      ],
-      postedDate: 'dotay'
-    },
-        {
-      messageId : 'id2',
-      messageAuthorId : 'authid4',
-      authorImageUrl: 'https://i.ytimg.com/vi/DmIN5Vo-ST8/maxresdefault.jpg',
-      authorName: 'Prof',
-      messageType: 'images',
-      messageBody: 'teams/realmadrid.png',
-      replyMessages: [],
-      emojis: [{
-        emojiId: '1',
-        emojiUrl: '../../assets/emoji/1f595.png',
-        emojiAuthorId: '1',
-        emojiAuthorName: '1'
-      }],
-      images: [
-        {
-          imageId: 'imgid1',
-          imageUrl: 'https://wallpaperbrowse.com/media/images/soap-bubble-1958650_960_720.jpg'
-        },
-        {
-          imageId: 'imgid2',
-          imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlcfXb3a4jtMeBzpMA9QWAjPPC84XHaeC_Xg-qZ3lTFo75h-At '
-        },
-        {
-          imageId: 'imgid2',
-          imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlcfXb3a4jtMeBzpMA9QWAjPPC84XHaeC_Xg-qZ3lTFo75h-At '
-        }
-
-      ],
-      postedDate: 'dotay'
-    },
-        {
-      messageId : 'id2',
-      messageAuthorId : 'authid1',
-      authorImageUrl: 'https://i.ytimg.com/vi/DmIN5Vo-ST8/maxresdefault.jpg',
-      authorName: 'Prof',
-      messageType: 'images',
-      messageBody: 'teams/realmadrid.png',
-      replyMessages: [],
-      emojis: [{
-        emojiId: '1',
-        emojiUrl: '../../assets/emoji/1f595.png',
-        emojiAuthorId: '1',
-        emojiAuthorName: '1'
-      }],
-      images: [
-        {
-          imageId: 'imgid1',
-          imageUrl: 'https://wallpaperbrowse.com/media/images/soap-bubble-1958650_960_720.jpg'
-        },
-        {
-          imageId: 'imgid2',
-          imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlcfXb3a4jtMeBzpMA9QWAjPPC84XHaeC_Xg-qZ3lTFo75h-At '
-        },
-        {
-          imageId: 'imgid2',
-          imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlcfXb3a4jtMeBzpMA9QWAjPPC84XHaeC_Xg-qZ3lTFo75h-At '
-        },
-        {
-          imageId: 'imgid1',
-          imageUrl: 'https://wallpaperbrowse.com/media/images/soap-bubble-1958650_960_720.jpg'
-        }
-
-      ],
-      postedDate: 'dotay'
-    },
+//
+//     {
+//       messageId : 'id2',
+//       messageAuthorId : 'authid3',
+//       authorImageUrl: 'https://i.ytimg.com/vi/DmIN5Vo-ST8/maxresdefault.jpg',
+//       authorName: 'Prof',
+//       messageType: 'images',
+//       messageBody: 'teams/realmadrid.png',
+//       replyMessages: [],
+//       emojis: [{
+//         emojiId: '1',
+//         emojiUrl: '../../assets/emoji/1f595.png',
+//         emojiAuthorId: '1',
+//         emojiAuthorName: '1'
+//       }],
+//       images: [
+//         {
+//           imageId: 'imgid1',
+//           imageUrl: 'https://wallpaperbrowse.com/media/images/soap-bubble-1958650_960_720.jpg'
+//         },
+//         {
+//           imageId: 'imgid2',
+//           imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlcfXb3a4jtMeBzpMA9QWAjPPC84XHaeC_Xg-qZ3lTFo75h-At '
+//         },
+//         {
+//           imageId: 'imgid2',
+//           imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlcfXb3a4jtMeBzpMA9QWAjPPC84XHaeC_Xg-qZ3lTFo75h-At '
+//         },
+//         {
+//           imageId: 'imgid1',
+//           imageUrl: 'https://wallpaperbrowse.com/media/images/soap-bubble-1958650_960_720.jpg'
+//         },
+//         {
+//           imageId: 'imgid1',
+//           imageUrl: 'https://wallpaperbrowse.com/media/images/soap-bubble-1958650_960_720.jpg'
+//         },
+//
+//       ],
+//       postedDate: 'dotay'
+//     },
+//
+//     {
+//       messageId : 'id2',
+//       messageAuthorId : 'authid2',
+//       authorImageUrl: 'https://i.ytimg.com/vi/DmIN5Vo-ST8/maxresdefault.jpg',
+//       authorName: 'Prof',
+//       messageType: 'images',
+//       messageBody: 'teams/realmadrid.png',
+//       replyMessages: [],
+//       emojis: [{
+//         emojiId: '1',
+//         emojiUrl: '../../assets/emoji/1f595.png',
+//         emojiAuthorId: '1',
+//         emojiAuthorName: '1'
+//       }],
+//       images: [
+//         {
+//           imageId: 'imgid1',
+//           imageUrl: 'https://wallpaperbrowse.com/media/images/soap-bubble-1958650_960_720.jpg'
+//         },
+//         {
+//           imageId: 'imgid2',
+//           imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlcfXb3a4jtMeBzpMA9QWAjPPC84XHaeC_Xg-qZ3lTFo75h-At '
+//         },
+//         {
+//           imageId: 'imgid2',
+//           imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlcfXb3a4jtMeBzpMA9QWAjPPC84XHaeC_Xg-qZ3lTFo75h-At '
+//         },
+//         {
+//           imageId: 'imgid1',
+//           imageUrl: 'https://wallpaperbrowse.com/media/images/soap-bubble-1958650_960_720.jpg'
+//         },
+//         {
+//           imageId: 'imgid1',
+//           imageUrl: 'https://wallpaperbrowse.com/media/images/soap-bubble-1958650_960_720.jpg'
+//         },
+//
+//       ],
+//     postedDate: 'dotay'
+//     },
+//
+//
+//
+//
+//
+//     {
+//       messageId : 'id2',
+//       messageAuthorId : 'authid3',
+//       authorImageUrl: 'https://i.ytimg.com/vi/DmIN5Vo-ST8/maxresdefault.jpg',
+//       authorName: 'Prof',
+//       messageType: 'video',
+//       messageBody: 'https://www.youtube.com/embed/mZZsYDpS394',
+//       replyMessages: [],
+//       emojis: [{
+//         emojiId: '1',
+//         emojiUrl: '../../assets/emoji/1f595.png',
+//         emojiAuthorId: '1',
+//         emojiAuthorName: '1'
+//       }],
+//       images: [],
+//       postedDate: 'dotay'
+//     },
+//
+//
+// {
+//       messageId : 'id2',
+//       messageAuthorId : 'authid3',
+//       authorImageUrl: 'https://i.ytimg.com/vi/DmIN5Vo-ST8/maxresdefault.jpg',
+//       authorName: 'Prof',
+//       messageType: 'images',
+//       messageBody: 'teams/realmadrid.png',
+//       replyMessages: [],
+//       emojis: [{
+//         emojiId: '1',
+//         emojiUrl: '../../assets/emoji/1f595.png',
+//         emojiAuthorId: '1',
+//         emojiAuthorName: '1'
+//       }],
+//       images: [
+//         {
+//           imageId: 'imgid1',
+//           imageUrl: 'https://wallpaperbrowse.com/media/images/soap-bubble-1958650_960_720.jpg'
+//         },
+//
+//       ],
+//       postedDate: 'dotay'
+//     },
+//         {
+//       messageId : 'id2',
+//       messageAuthorId : 'authid2',
+//       authorImageUrl: 'https://i.ytimg.com/vi/DmIN5Vo-ST8/maxresdefault.jpg',
+//       authorName: 'Prof',
+//       messageType: 'images',
+//       messageBody: 'teams/realmadrid.png',
+//       replyMessages: [],
+//       emojis: [{
+//         emojiId: '1',
+//         emojiUrl: '../../assets/emoji/1f595.png',
+//         emojiAuthorId: '1',
+//         emojiAuthorName: '1'
+//       }],
+//       images: [
+//         {
+//           imageId: 'imgid1',
+//           imageUrl: 'https://wallpaperbrowse.com/media/images/soap-bubble-1958650_960_720.jpg'
+//         },
+//         {
+//           imageId: 'imgid2',
+//           imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlcfXb3a4jtMeBzpMA9QWAjPPC84XHaeC_Xg-qZ3lTFo75h-At '
+//         },
+//
+//       ],
+//       postedDate: 'dotay'
+//     },
+//         {
+//       messageId : 'id2',
+//       messageAuthorId : 'authid4',
+//       authorImageUrl: 'https://i.ytimg.com/vi/DmIN5Vo-ST8/maxresdefault.jpg',
+//       authorName: 'Prof',
+//       messageType: 'images',
+//       messageBody: 'teams/realmadrid.png',
+//       replyMessages: [],
+//       emojis: [{
+//         emojiId: '1',
+//         emojiUrl: '../../assets/emoji/1f595.png',
+//         emojiAuthorId: '1',
+//         emojiAuthorName: '1'
+//       }],
+//       images: [
+//         {
+//           imageId: 'imgid1',
+//           imageUrl: 'https://wallpaperbrowse.com/media/images/soap-bubble-1958650_960_720.jpg'
+//         },
+//         {
+//           imageId: 'imgid2',
+//           imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlcfXb3a4jtMeBzpMA9QWAjPPC84XHaeC_Xg-qZ3lTFo75h-At '
+//         },
+//         {
+//           imageId: 'imgid2',
+//           imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlcfXb3a4jtMeBzpMA9QWAjPPC84XHaeC_Xg-qZ3lTFo75h-At '
+//         }
+//
+//       ],
+//       postedDate: 'dotay'
+//     },
+//         {
+//       messageId : 'id2',
+//       messageAuthorId : 'authid1',
+//       authorImageUrl: 'https://i.ytimg.com/vi/DmIN5Vo-ST8/maxresdefault.jpg',
+//       authorName: 'Prof',
+//       messageType: 'images',
+//       messageBody: 'teams/realmadrid.png',
+//       replyMessages: [],
+//       emojis: [{
+//         emojiId: '1',
+//         emojiUrl: '../../assets/emoji/1f595.png',
+//         emojiAuthorId: '1',
+//         emojiAuthorName: '1'
+//       }],
+//       images: [
+//         {
+//           imageId: 'imgid1',
+//           imageUrl: 'https://wallpaperbrowse.com/media/images/soap-bubble-1958650_960_720.jpg'
+//         },
+//         {
+//           imageId: 'imgid2',
+//           imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlcfXb3a4jtMeBzpMA9QWAjPPC84XHaeC_Xg-qZ3lTFo75h-At '
+//         },
+//         {
+//           imageId: 'imgid2',
+//           imageUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlcfXb3a4jtMeBzpMA9QWAjPPC84XHaeC_Xg-qZ3lTFo75h-At '
+//         },
+//         {
+//           imageId: 'imgid1',
+//           imageUrl: 'https://wallpaperbrowse.com/media/images/soap-bubble-1958650_960_720.jpg'
+//         }
+//
+//       ],
+//       postedDate: 'dotay'
+//     },
   ];
 
 
